@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Administrador | Dashboard </title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link type="text/css" rel="stylesheet" href="css/theme.css"/>
+        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+    </h:head>
+    <h:body>
+        
+        <div class="ui-g ui-fluid clearfix">
+            <div class="ui-g-12 ui-md-3 slidebar">
+                <h:form>
+                    <div class="logo">
+                        <a href=""></a>
+                    </div>
+                    <p:growl id="messages" showDetail="false"/>
+                    <p:menu toggleable="true">
+                        <p:submenu label="Clientes">
+                            <p:menuitem value="Save" actionListener="#{menuView.save}" update="messages" icon="ui-icon-disk" />
+                            <p:menuitem value="Update" actionListener="#{menuView.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                        </p:submenu>
+                        <p:submenu label="Automovil">
+                             <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+                        </p:submenu>
+                        <p:submenu label="Seguro">
+                             <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+                             <p:menuitem value="Internal" icon="ui-icon-star"/>
+                        </p:submenu>
+                        <p:submenu label="Reportes">
+                            <p:menuitem value="Internal" icon="ui-icon-signal"/>
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+ 
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-g-nopad">
+      
+    <ul class="topbar clearfix">
+      <li><a href="#">q</a></li>
+      <li><a href="#">p</a></li>
+      <li><a href="#">o</a></li>
+      <li><a href="#">f</a></li>
+      <li><a href="#">n</a></li>
+    </ul>
+    <div class="mainContent clearfix">
+      <div id="dashboard">
+        <h2 class="header"><span class="icon"></span>Dashboard</h2>
+          <div class="monitor">
+            <h4>Right Now</h4>
+            <div class="clearfix">
+              <ul class="content">
+                <li>content</li>
+                <li class="posts"><span class="count">179</span><a href="">posts</a></li>
+                <li class="pages"><span class="count">13</span><a href="">pages</a></li>
+                <li class="categories"><span class="count">21</span><a href="">categories</a></li>
+                <li class="tags"><span class="count">305</span><a href="">tags</a></li>
+              </ul>
+              <ul class="discussions">
+                <li>discussions</li>
+                <li class="comments"><span class="count">353</span><a href="">comments</a></li>
+                <li class="approved"><span class="count">319</span><a href="">approved</a></li>
+                <li class="pending"><span class="count">0</span><a href="">pending</a></li>
+                <li class="spam"><span class="count">34</span><a href="">spam</a></li>
+             </ul>
+           </div>
+           <p>Theme <a href="">Twenty Eleven</a> with <a href="">3 widgets</a></p>
+         </div>
+         <div class="quick-press">
+           <h4>Quick Press</h4>
+           <form action="" method="post">
+             <input type="text" name="title" placeholder="Title"/>
+             <input type="text" name="content" placeholder="Content"/>
+             <input type="text" name="tags" placeholder="Tags"/>
+             <button type="button" class="save">l</button>
+             <button type="button" class="delet">m</button>
+             <button type="submit" class="submit" name="submit">Publish</button>
+           </form>
+         </div>
+       </div>
+       <div id="posts">
+         <h2 class="header">posts</h2>
+       </div>
+       <div id="media">
+         <h2 class="header">media</h2>
+       </div>
+       <div id="pages">
+         <h2 class="header">pages</h2>
+       </div>
+       <div id="links">
+         <h2 class="header">links</h2>
+       </div>
+       <div id="comments">
+         <h2 class="header">comments</h2>
+       </div>
+       <div id="widgets">
+         <h2 class="header">widgets</h2>
+       </div>
+       <div id="plugins">
+         <h2 class="header">plugins</h2>
+       </div>
+       <div id="users">
+         <h2 class="header">users</h2>
+       </div>
+       <div id="tools">
+         <h2 class="header">tools</h2>
+       </div>
+       <div id="settings">
+         <h2 class="header">settings</h2>
+       </div>
+     </div>
+   </div>
+</div>
+    </h:body>
+</html>
+
