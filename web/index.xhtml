@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <title>Main Form</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="css/main.css"/>
+        <script src="js/spanish_translation_pf.js" />
+        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+    </h:head>   
+    <h:body>   
+        <h3>Orden de servicio</h3>
+        <h:form>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-2">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                        <p:calendar id="cal" value="#{calendarView.date2}, #{calendarView.date8}, #{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="Fecha"/>
+                    </div>
+                </div>
+                
+                    <div class="ui-g-12 ui-md-2">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                            <p:inputText placeholder="Hora"/>
+                        </div>
+                    </div>
+                
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                            <p:inputText placeholder="Atiende"/>
+                        </div>
+                    </div>
+
+                    <div class="ui-g-12 ui-md-3">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-sticky-note"></i></span>
+                            <p:inputText placeholder="Registro"/>
+                        </div>
+                    </div>         
+            </div>
+            <p:panel header="Tipo de atención" class="margin_panel">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-7">
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado"/>
+                            <f:selectItem itemLabel="Pub. en gral" itemValue="" />
+                            <f:selectItem itemLabel="Garantia" itemValue="" />
+                            <f:selectItem itemLabel="Cortesia" itemValue="cortesia" />
+                        </p:selectOneButton>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:inputText placeholder="REF"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:inputText placeholder="AUT"/>
+                    </div>
+                </div>
+            </p:panel>
+            <p:panel header="Vehiculo" class="margin_panel">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-3">
+                        <p:selectOneMenu id="Marca" value="#{dropdownView.marca}">
+                            <p:ajax listener="#{dropdownView.onMarcaChange}" update="Modelo" />
+                            <f:selectItem itemLabel="Marca" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{dropdownView.marcas}" />
+                        </p:selectOneMenu>
+                    </div>
+                <div class="ui-g-12 ui-md-3">
+                    <p:selectOneMenu id="Modelo" value="#{dropdownView.modelo}">
+                        <p:ajax listener="#{dropdownView.onModeloChange()}" update="Anio"/>
+                        <f:selectItem itemLabel="Modelo" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{dropdownView.modelos}" />
+                    </p:selectOneMenu>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <p:selectOneMenu id="Anio" value="#{dropdownView.anio}">
+                        <f:selectItem itemLabel="Año" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{dropdownView.modelos}" />
+                    </p:selectOneMenu>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <p:inputText placeholder="Placas"/>
+                </div>
+                <div class="ui-g-12 ui-md-12">
+                   <p:outputLabel value="Observaciones:"/>
+                    <p:inputText/>
+                </div>
+            </div>
+                
+            </p:panel>
+           
+
+            
+            
+            
+            <h4>Productos:</h4>
+            
+            <!--Observar-->
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-12">
+                    <div class="ui-inputgroup">
+                        <p:inputText placeholder="Cantidad"/>
+                        <p:inputText placeholder="C L A V E"/>
+                        <p:inputText placeholder="Descripcion"/>
+                        <span class="ui-inputgroup-addon"><i class="fa fa-dollar"></i></span>
+                        <p:inputText placeholder="Precio"/>
+                        <p:inputText placeholder="Importe deducible"/>
+                        <p:inputText placeholder="En tienda"/>
+                        <p:inputText placeholder="L O C"/>
+                        <p:inputText placeholder="Transferencia"/>
+                        <p:inputText placeholder="Folio"/>
+                        <p:button icon="fa fa-plus-square"></p:button>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-2">
+                    <p:outputLabel value="Uretano: "/>
+                    <p:selectOneButton value="#{selectOneView.option}">
+                        <f:selectItem itemLabel="Si" itemValue="" />
+                        <f:selectItem itemLabel="No" itemValue="" />
+                    </p:selectOneButton>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <p:outputLabel value="Presentacion: "/>
+                    <p:selectOneButton value="#{selectOneView.option}">
+                        <f:selectItem itemLabel="salchicha" itemValue="" />
+                        <f:selectItem itemLabel="Tubo" itemValue="" />
+                    </p:selectOneButton>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p:outputLabel value="Cantidad: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <p:outputLabel value="Serv. a Domicilio: "/>
+                    <p:selectOneButton value="#{selectOneView.option}">
+                        <f:selectItem itemLabel="Si" itemValue="" />
+                        <f:selectItem itemLabel="No" itemValue="" />
+                    </p:selectOneButton>
+                </div>
+            </div>
+            
+            <h4>Datos del siniestro</h4>
+            
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-4">
+                <p:outputLabel value="Campaña: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Fecha de accidente: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Hora: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                <p:outputLabel value="Como ocurrio el siniestro "/>
+                    <p:inputTextarea/>
+                </div>
+            </div>
+            
+             <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-2">
+                    <p:outputLabel value="Telefono: "/>
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
+                        <p:inputText placeholder="Telefono"/>
+                    </div>
+                </div>
+                <div class="ui-g-12 ui-md-3">
+                    <p:outputLabel value="¿Autorizado por la compañia?"/>
+                    <p:selectOneButton value="#{selectOneView.option}">
+                        <f:selectItem itemLabel="Si" itemValue="" />
+                        <f:selectItem itemLabel="No" itemValue="" />
+                    </p:selectOneButton>
+                </div>     
+             </div>
+            
+            
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-9">
+                <p:outputLabel value="Motivo de rechazo "/>
+                    <p:inputText/>
+                </div>
+            </div>
+            
+            <h4>Datos de facturación: </h4>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-9">
+                <p:outputLabel value="Razón Social: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="RFC: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Direccion: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-1">
+                <p:outputLabel value="Numero: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Colonia: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-1">
+                <p:outputLabel value="C.P. "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Localidad: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Municipio: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-2">
+                <p:outputLabel value="Estado: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-1">
+                <p:outputLabel value="Correo: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-1">
+                <p:outputLabel value="Telefono: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                
+                
+            
+            </div>
+            <h4>Instalación</h4>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-6">
+                <p:outputLabel value="Instalador 1: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                <div class="ui-g-12 ui-md-6">
+                <p:outputLabel value="Instalador 2: "/>
+                    <p:inputText placeholder=""/>
+                </div>
+                
+            </div>
+            
+        </h:form>
+    </h:body>
+</html>
+

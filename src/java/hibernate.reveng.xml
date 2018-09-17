@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="vitrocar" match-schema="public"/>
+  <table-filter match-name="cliente_auto"/>
+  <table-filter match-name="tipo_atencion"/>
+  <table-filter match-name="datos_cliente"/>
+  <table-filter match-name="estado"/>
+  <table-filter match-name="tipo_auto"/>
+  <table-filter match-name="orden_servicio"/>
+  <table-filter match-name="siniestro"/>
+  <table-filter match-name="pais"/>
+  <table-filter match-name="facturacion"/>
+  <table-filter match-name="puesto"/>
+  <table-filter match-name="istable"/>
+  <table-filter match-name="marca"/>
+  <table-filter match-name="uso"/>
+  <table-filter match-name="pieza"/>
+  <table-filter match-name="dom_extran"/>
+  <table-filter match-name="auto"/>
+  <table-filter match-name="calif"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="rppd"/>
+  <table-filter match-name="det_orden_servicio"/>
+  <table-filter match-name="cod"/>
+  <table-filter match-name="auto_pieza"/>
+  <table-filter match-name="inciso"/>
+  <table-filter match-name="conductor"/>
+  <table-filter match-name="empleado"/>
+  <table-filter match-name="det_siniestro"/>
+  <table-filter match-name="aseguradora"/>
+  <table-filter match-name="municipio"/>
+  <table-filter match-name="categoria_pieza"/>
+  <table-filter match-name="cp"/>
+  <table-filter match-name="poliza"/>
+  <table-filter match-name="servicio"/>
+  <table-filter match-name="tipo_lic"/>
+  <table-filter match-name="anio"/>
+  <table-filter match-name="sucursal"/>
+</hibernate-reverse-engineering>
