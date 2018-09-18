@@ -1,33 +1,16 @@
-.clearfix:after {
-	content: "";
-	display: block;
-	height: 0;
-	width: 0;
-	clear: both;
-}
 .slidebar {
-	border-right: 1px solid rgb(235,235,235);
-	background-color: rgb(247,247,247);
         height: 100%;
 }
 .slidebar .logo {
-	height: 145px;
+	height: 155px;
 	border-bottom: 1px solid rgb(235,235,235);
 }
 
 .main {
-	float: left;
-	width: 79%;
-	height: 690px;
-	background-color: rgb(255,255,255);
-	position: relative;
-	font-family: helvetica,verdana,sans-serif;
+    position: relative;
 }
-.main .topbar {
-	border-bottom: 1px solid rgb(235,235,235);
-	margin: 0;
-	padding: 0;
-}
+
+
 /*topbar顶部按钮栏*/
 .topbar li {
 	float: right;
@@ -60,6 +43,7 @@
 }
  
 .mainContent>div {
+    background: yellow;
 	position: absolute;
 	opacity: 0;
 	-webkit-transition:opacity 200ms linear;
