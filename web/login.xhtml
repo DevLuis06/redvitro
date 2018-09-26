@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Iniciar Sesión | Vitrocar </title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
@@ -11,7 +12,7 @@
         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
     </h:head>
     <h:body>
-        
+      
         <h:form>
             <p:panel header="Iniciar Sesión" class="margin_panel ui-md-6 login">
                 <div class="ui-g ui-fluid">
@@ -20,11 +21,7 @@
             <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
             <p:inputText placeholder="Nombre de usuario" />      
         </div>
-    </div>
- 
-    
- 
-    
+    </div>                    
 </div>
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-12">
@@ -34,10 +31,7 @@
         </div>
     </div>
                     
-                       
- 
-        
-                </div>
+        </div>
                  <p:separator />
                 <div class="ui-g ui-fluid">
                                     <p:commandButton value="Iniciar Sesión"  icon="fa fa-check"/>
