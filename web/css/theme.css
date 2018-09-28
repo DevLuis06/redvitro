@@ -11,8 +11,6 @@
     position: relative;
 }
 
-
-
 .topbar li {
 	float: right;
 	list-style: none;
@@ -37,7 +35,6 @@
 }
 /*mainContent*/
 .mainContent{
-        background: blue;
         margin-top: 10px;
         margin-bottom: 10px;
         border-radius: 3px;
