@@ -65,23 +65,23 @@
             <p:panel header="Vehiculo" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-3">
-                        <p:selectOneMenu id="Marca" value="#{dropdownView.marca}">
-                            <p:ajax listener="#{dropdownView.onMarcaChange}" update="Modelo" />
+                        <p:selectOneMenu id="Marca" value="#{principal.marca}">
+                            <p:ajax update="Modelo" />
                             <f:selectItem itemLabel="Marca" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{dropdownView.marcas}" />
+                            <f:selectItems value="#{principal.get_category_marca()}" />
                         </p:selectOneMenu>
                     </div>
                 <div class="ui-g-12 ui-md-3">
-                    <p:selectOneMenu id="Modelo" value="#{dropdownView.modelo}">
-                        <p:ajax listener="#{dropdownView.onModeloChange()}" update="Anio"/>
+                    <p:selectOneMenu id="Modelo" value="#{principal.modelo}">
+                        <p:ajax  update="Anio"/>
                         <f:selectItem itemLabel="Modelo" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{dropdownView.modelos}" />
+                        <f:selectItems value="#{principal.get_category_modelo()}" />
                     </p:selectOneMenu>
                 </div>
                 <div class="ui-g-12 ui-md-3">
-                    <p:selectOneMenu id="Anio" value="#{dropdownView.anio}">
+                    <p:selectOneMenu id="Anio" value="#{principal.anio}">
                         <f:selectItem itemLabel="Año" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{dropdownView.modelos}" />
+                        <f:selectItems value="#{principal.get_fuckanio(principal.marca, principal.modelo)}" />
                     </p:selectOneMenu>
                 </div>
                 <div class="ui-g-12 ui-md-3">

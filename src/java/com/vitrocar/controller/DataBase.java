@@ -13,12 +13,12 @@ import java.sql.*;
  */
 public class DataBase {
     
-    private Connection connection() throws Exception {
+    public Connection connection() throws Exception {
     
     Connection db = null;        
-    
-    String urlDatabase =  "jdbc:postgresql://localhost:5432/vitrocar";
     Class.forName("org.postgresql.Driver"); //cargar el driver manualmente
+    String urlDatabase =  "jdbc:postgresql://localhost:5432/vitrocar";
+  
     db = DriverManager.getConnection(urlDatabase,  "postgres", "123456");
     
     return db;

@@ -32,64 +32,60 @@ public class DropdownView implements Serializable {
     @PostConstruct
     public void init() {
         
-                Marcas  = new HashMap<String, String>();
-                Map<String,String> map = new HashMap<String, String>();
+//                Marcas  = new HashMap<String, String>();
+//                Map<String,String> map = new HashMap<String, String>();
+//        
+//             DataBase db = new DataBase();
+//        
+//        try {
+//            
+//            ResultSet datas = db.Query("SELECT nombre FROM marca order by id_marca asc");
+//            
+//            while(datas.next()){
+//                
+//               Marcas.put(datas.getString("nombre"),datas.getString("id_marca")); 
+//                
+//            }
+//            
+//            ResultSet modelos = db.Query("SELECT  nombre FROM auto order by id_marca desc");
+//            
+//            while(modelos.next()){
+//                
+//               map.put(modelos.getString("modelo"),modelos.getString("id_auto")); 
+//               
+//               data.put(modelos.getString("id_marca"), map);
+//                
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(DropdownView.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
-             DataBase db = new DataBase();
-        
-        try {
-            
-            ResultSet datas = db.Query("SELECT * FROM marca order by id_marca asc");
-            
-            while(datas.next()){
-                
-               Marcas.put(datas.getString("nombre"),datas.getString("id_marca")); 
-                
-            }
-            
-            ResultSet modelos = db.Query("SELECT id_auto, modelo, id_marca FROM auto order by id_marca asc");
-            
-            while(modelos.next()){
-                
-               map.put(modelos.getString("modelo"),modelos.getString("id_auto")); 
-               
-               data.put(modelos.getString("id_marca"), map);
-                
-            }
-            
-            
-        } catch (Exception ex) {
-            Logger.getLogger(DropdownView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-
-   
-            /*        Marcas.put("Audi", "Audi");
-            Marcas.put("Mazda", "Mazda");
-            Marcas.put("BMW", "BMW");
-            
-            */
-            
-           
-            
-       
-/*        Map<String,String> map = new HashMap<String, String>();
-        map.put("A3", "A3");
-        map.put("A6 Sedan", "A6 Sedan");
-        map.put("R8", "R8");
-        data.put("Audi", map);
-         
-        map = new HashMap<String, String>();
-        map.put("CX-5", "CX-5");
-        map.put("CX-3", "CX-3");
-        map.put("Mazda 2", "Mazda 2");
-        data.put("Mazda", map);
-         
-        map = new HashMap<String, String>();
-        map.put("M140i", "M140i");
-        map.put("M240i", "M240i");
-        map.put("550i", "550i");*/
-        data.put("BMW", map);
+//        Marcas = new HashMap<String, String>();
+//        Marcas.put("Audi", "Audi");
+//        Marcas.put("Mazda", "Mazda");
+//        Marcas.put("BMW", "BMW");
+//
+//
+//           
+//            
+//       
+//       Map<String,String> map = new HashMap<String, String>();
+//        map.put("A3", "A3");
+//        map.put("A6 Sedan", "A6 Sedan");
+//        map.put("R8", "R8");
+//        data.put("Audi", map);
+//         
+//        map = new HashMap<String, String>();
+//        map.put("CX-5", "CX-5");
+//        map.put("CX-3", "CX-3");
+//        map.put("Mazda 2", "Mazda 2");
+//        data.put("Mazda", map);
+//         
+//        map = new HashMap<String, String>();
+//        map.put("M140i", "M140i");
+//        map.put("M240i", "M240i");
+//        map.put("550i", "550i");
+//        data.put("BMW", map);
     }
     public Map<String, Map<String, String>> getData() {
         return data;
