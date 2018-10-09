@@ -12,7 +12,7 @@
         <script src="js/spanish_translation_pf.js" />
         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
     </h:head>   
-    <h:body>   
+    <h:body>  
         <h3>Orden de servicio</h3>
         <h:form>
             <div class="ui-g ui-fluid">
@@ -91,35 +91,104 @@
                    <p:outputLabel value="Observaciones:"/>
                     <p:inputText/>
                 </div>
-            </div>
-                
+            </div>     
             </p:panel>
            
+            <p:panel header="Productos" class="margin_panel">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-2">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-cart-plus"></i></span>
+                            <p:inputText placeholder="Cantidad"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-hashtag"></i></span>
+                            <p:inputText placeholder="CLAVE"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-pencil-square"></i></span>
+                            <p:inputText placeholder="Descripción"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-dollar"></i></span>
+                            <p:inputText placeholder="Precio"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-dollar"></i></span>
+                            <p:inputText placeholder="Importe deducible"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="En tienda: "/>
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Si" itemValue="" />
+                            <f:selectItem itemLabel="No" itemValue="" />
+                        </p:selectOneButton>
+                    </div>
+                    
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Localizacion: "/>
+                        <p:inputText placeholder="" disabled="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Transferencia: "/>
+                        <p:inputText placeholder="" disabled="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Folio: "/>
+                        <p:inputText placeholder="" disabled="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p:button icon="fa fa-plus-square" value="Agregar"></p:button>
+                       <!-- <p:commandButton value="Agregar" id="ajax" update="growl"  styleClass="ui-priority-primary" />-->
+                    </div>
+                    <div class="divider_"></div>
+                    <!--<div class="ui-g-12 ui-md-12">
+                        <p:dataTable var="car" value="" reflow="true" paginator="true">
+                            <p:column headerText="Cantidad">
+                                <h:outputText value="5" />
+                            </p:column>
+                            <p:column headerText="Clave">
+                                <h:outputText value="0987654321" />
+                            </p:column>
+                            <p:column headerText="Descripción">
+                                <h:outputText value="Este modelo es nuevo" />
+                            </p:column>
+                            <p:column headerText="Precio">
+                                <h:outputText value="2500" />
+                            </p:column>
+                            <p:column headerText="Importe deducible">
+                                <h:outputText value="1000" />
+                            </p:column>
+                            <p:column headerText="En tienda">
+                                <h:outputText value="Si" />
+                            </p:column>
+                            <p:column headerText="Localización">
+                                <h:outputText value="Tapachula" />
+                            </p:column>
+                            <p:column headerText="Transferencia">
+                                <h:outputText value="#{car.color}" />
+                            </p:column>
+                            <p:column headerText="Folio">
+                                <h:outputText value="#{car.color}" />
+                            </p:column>
+                        </p:dataTable>
+                    </div>-->
+                </div>
+                
+            </p:panel>
 
             
             
             
-            <h4>Productos:</h4>
-            
-            <!--Observar-->
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-12">
-                    <div class="ui-inputgroup">
-                        <p:inputText placeholder="Cantidad"/>
-                        <p:inputText placeholder="C L A V E"/>
-                        <p:inputText placeholder="Descripcion"/>
-                        <span class="ui-inputgroup-addon"><i class="fa fa-dollar"></i></span>
-                        <p:inputText placeholder="Precio"/>
-                        <p:inputText placeholder="Importe deducible"/>
-                        <p:inputText placeholder="En tienda"/>
-                        <p:inputText placeholder="L O C"/>
-                        <p:inputText placeholder="Transferencia"/>
-                        <p:inputText placeholder="Folio"/>
-                        <p:button icon="fa fa-plus-square"></p:button>
-                        
-                    </div>
-                </div>
-            </div>
             
             <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-2">
