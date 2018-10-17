@@ -153,7 +153,7 @@
                     <div class="divider_"></div>
                     
                     <h:form id="form">
-                        <p:dataTable id="cars1" widgetVar="cars1" var="car" value="#{dtEditView.cars1}" editable="true">
+                        <p:dataTable id="cars1" widgetVar="cars1" var="car" value="#{dtEditView.cars1}" editable="true" reflow="true">
                             <p:column headerText="Cantidad" style="width: 60px">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{car.id}" /></f:facet>
