@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Administrador | Dashboard </title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+        <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+        <link type="text/css" rel="stylesheet" href="../css/theme.css"/>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    </h:head>
+
+    <h:body>
+
+        <!--       TOP                  -->
+        <div id="top" class="top">
+
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-3 slidebar">
+                    <h:form>
+                        <div class="logo">
+                            <a href="../Template/Principal.xhtml">
+                                <img src="../resources/images/logo.png"/>
+                            </a>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="ui-g-12 ui-md-9 ui-g-nopad main">
+                    <h:form>  
+                        <p:menubar>
+                            <p:submenu label="Yeltsin" icon="ui-icon-person">
+                                <p:menuitem value="Opciones" url="../View/Cliente.xhtml" icon="ui-icon-gear"/>
+                            </p:submenu>
+                            <f:facet name="options">
+                                <p:commandButton type="button" value="Cerrar Sesión" icon="ui-icon-extlink" />
+                            </f:facet>
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <!--       LEFT                  -->
+        <div>
+            <div id="left">
+                <div class="ui-g-12 ui-md-3 slidebar">
+                    <h:form>
+                        <p:growl id="messages" showDetail="false"/>
+                        <p:menu>
+                            <p:menuitem value="Aseguradora" url="../View/Aseguradora.xhtml" icon="ui-icon-plusthick" />
+                            <p:menuitem value="Clientes" url="../View/Cliente.xhtml" icon="ui-icon-person" />
+                            <p:menuitem value="Localidad" url="../View/Localidad.xhtml" icon="ui-icon-pin-s" />
+                            <p:menuitem value="Reportes" url="../View/Reportes.xhtml" icon="ui-icon-clipboard" />
+                            <p:menuitem value="Servicios" url="../View/Servicios.xhtml" icon="ui-icon-flag" />
+                            <p:menuitem value="Sucursales" url="../View/Sucursales.xhtml" icon="ui-icon-home" />
+                            <p:menuitem value="Vehículos" url="../View/Vehiculos.xhtml" icon="ui-icon-close" />
+                        </p:menu>
+                    </h:form>
+
+                </div>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Bienvenidos al Portal de Vitrocar</ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>
