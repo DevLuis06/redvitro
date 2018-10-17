@@ -151,6 +151,77 @@
                        <!-- <p:commandButton value="Agregar" id="ajax" update="growl"  styleClass="ui-priority-primary" />-->
                     </div>
                     <div class="divider_"></div>
+                    
+                    <h:form id="form">
+                        <p:dataTable id="cars1" widgetVar="cars1" var="car" value="#{dtEditView.cars1}" editable="true">
+                            <p:column headerText="Cantidad" style="width: 60px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.id}" /></f:facet>
+                                    <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:100%"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+ 
+                            <p:column headerText="Clave" style="width: 60px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+ 
+                            <p:column headerText="Descripción" style="width: 200px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet>
+                                    <f:facet name="input">
+                                        <h:selectOneMenu value="#{car.brand}" style="width:100%">
+                                            <f:selectItems value="#{dtEditView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Precio" style="width: 60px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column headerText="Importe deducible" style="width: 90px;min-width: ">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet>
+                                    <f:facet name="input">
+                                        <h:selectOneMenu value="#{car.color}" style="width:100%">
+                                            <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="En tienda" style="width: 100px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Localizacion" style="width: 100px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column style="width:32px">
+                                <p:rowEditor />
+                            </p:column>
+                        </p:dataTable>
+                        
+ 
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                          actionListener="#{dtAddRowView.onAddNew()}" oncomplete="PF('cars1').addRow();"/>
+        </div>
+    </div>
+ 
+</h:form>
                     <!--<div class="ui-g-12 ui-md-12">
                         <p:dataTable var="car" value="" reflow="true" paginator="true">
                             <p:column headerText="Cantidad">
