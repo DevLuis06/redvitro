@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../ceo/main.xhtml">
+
+            <ui:define name="content">
+                <div class="ui-g-12 ui-md-9 ui-g-nopad main">
+                    <div class="mainContent clearfix">
+                        <h1>Sucursales</h1>
+                        <p:tabView dynamic="true" cache="true" effect="blind">
+                            <p:tab title="Lista de Sucursales">
+                                <h:panelGrid columns="2" cellpadding="10">
+
+                                </h:panelGrid>
+                            </p:tab>
+                            <!--                        E M P L E A D O S                                          -->
+
+                            <p:tab title="Empleados">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:form>
+                                        <div class="ui-g ui-fluid">
+                                            <div class="ui-g-12 ui-md-3">
+                                                <p:outputLabel for="sucursal" value="Sucursal:" />
+                                                <p:selectOneMenu id="sucursal" value="#{branch.sucursal}">
+                                                    <f:selectItem itemLabel="Sucursal" noSelectionOption="true" />
+                                                    <f:selectItems value="#{branch.get_sucursal()}"/>
+                                                </p:selectOneMenu>
+                                                
+                                                <p:commandButton value="Listar" action="#{branchbean_ceo.listar()}" update="data"/>
+                                            </div>
+                                        </div>
+                                        <p:dataTable id="data" value="#{branchbean_ceo.lstEmpleado}" var="empleado" >
+                                            <p:column headerText="Nombre">
+                                                <p:outputLabel value="#{empleado.nombre}"/>
+                                            </p:column>
+                                            <p:column headerText="Direccion">
+                                                <p:outputLabel value="#{empleado.direccion}"/>
+                                            </p:column>
+                                            <p:column headerText="Usuario">
+                                                <p:outputLabel value="#{empleado.users}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                        
+                                    </h:form>
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:tabView>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>Administrador | Dashboard </title>
@@ -21,9 +21,8 @@
 
     <h:body>
 
-        <!--       TOP                  -->
-        <div id="top" class="top">
 
+        <div id="top" class="top">
             <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-3 slidebar">
                     <h:form>
@@ -48,28 +47,25 @@
                 </div>
             </div>
         </div>
-
-        <!--       LEFT                  -->
         <div>
             <div id="left">
                 <div class="ui-g-12 ui-md-3 slidebar">
                     <h:form>
                         <p:growl id="messages" showDetail="false"/>
                         <p:menu>
-                            <p:menuitem value="Aseguradora" url="../View/Aseguradora.xhtml" icon="ui-icon-plusthick" />
-                            <p:menuitem value="Clientes" url="../View/Cliente.xhtml" icon="ui-icon-person" />
-                            <p:menuitem value="Localidad" url="../View/Localidad.xhtml" icon="ui-icon-pin-s" />
-                            <p:menuitem value="Reportes" url="../View/Reportes.xhtml" icon="ui-icon-clipboard" />
-                            <p:menuitem value="Servicios" url="../View/Servicios.xhtml" icon="ui-icon-flag" />
-                            <p:menuitem value="Sucursales" url="../View/Sucursales.xhtml" icon="ui-icon-home" />
-                            <p:menuitem value="Vehículos" url="../View/Vehiculos.xhtml" icon="ui-icon-close" />
+                            <p:menuitem value="Aseguradora" url="../ceo-view/insurance.xhtml" icon="ui-icon-plusthick" />
+                            <p:menuitem value="Clientes" url="../ceo-view/client.xhtml" icon="ui-icon-person" />
+                            <p:menuitem value="Localidad" url="../ceo-view/location.xhtml" icon="ui-icon-pin-s" />
+                            <p:menuitem value="Reportes" url="../ceo-view/reports.xhtml" icon="ui-icon-clipboard" />
+                            <p:menuitem value="Servicios" url="../ceo-view/services.xhtml" icon="ui-icon-flag" />
+                            <p:menuitem value="Sucursales" url="../ceo-view/branch.xhtml" icon="ui-icon-home" />
+                            <p:menuitem value="Vehículos" url="../ceo-view/vehicles.xhtml" icon="ui-icon-close" />
                         </p:menu>
                     </h:form>
-
                 </div>
             </div>
             <div id="content" class="left_content">
-                <ui:insert name="content">Bienvenidos al Portal de Vitrocar</ui:insert>
+                <ui:insert name="content">Content</ui:insert>
             </div>
         </div>
     </h:body>
