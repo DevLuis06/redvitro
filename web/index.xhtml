@@ -136,7 +136,11 @@
 
                     <div class="ui-g-12 ui-md-3">
                         <p:outputLabel value="Localizacion: "/>
-                        <p:inputText placeholder="" disabled="true"/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
+                            <p:inputText placeholder="" disabled="true"/>
+                        </div>
+                        
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <p:outputLabel value="Transferencia: "/>
@@ -151,34 +155,29 @@
                         <!-- <p:commandButton value="Agregar" id="ajax" update="growl"  styleClass="ui-priority-primary" />-->
                     </div>
                     <div class="divider_"></div>
-
-                  <!--  <h:form id="form">
-                        <p:dataTable id="cars1" widgetVar="cars1" var="car" value="#{dtEditView.cars1}" editable="true">
-                            <p:column headerText="Cantidad" style="width: 60px">
+                    
+                    <h:form>
+                        <p:dataTable id="cars1" widgetVar="" var="" value="" editable="true" reflow="true" class="table_design">
+                            <p:column headerText="Cantidad" style="width: 50px">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{car.id}" /></f:facet>
                                     <f:facet name="input"><p:inputText id="modelInput" value="#{car.id}" style="width:100%"/></f:facet>
                                 </p:cellEditor>
                             </p:column>
-
-                            <p:column headerText="Clave" style="width: 60px">
+                            <p:column headerText="Clave" style="width: 40px">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
                                     <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
                                 </p:cellEditor>
                             </p:column>
-
-                            <p:column headerText="Descripción" style="width: 200px">
+ 
+                            <p:column headerText="Descripción" style="width: 100px">
                                 <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{car.brand}" /></f:facet>
-                                    <f:facet name="input">
-                                        <h:selectOneMenu value="#{car.brand}" style="width:100%">
-                                            <f:selectItems value="#{dtEditView.brands}" var="man" itemLabel="#{man}" itemValue="#{man}" />
-                                        </h:selectOneMenu>
-                                    </f:facet>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="Precio" style="width: 60px">
+                            <p:column headerText="Precio" style="width: 50px">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
                                     <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
@@ -187,15 +186,11 @@
 
                             <p:column headerText="Importe deducible" style="width: 90px;min-width:90px">
                                 <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{car.color}" /></f:facet>
-                                    <f:facet name="input">
-                                        <h:selectOneMenu value="#{car.color}" style="width:100%">
-                                            <f:selectItems value="#{dtEditView.colors}" var="color" itemLabel="#{color}" itemValue="#{color}" />
-                                        </h:selectOneMenu>
-                                    </f:facet>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
                                 </p:cellEditor>
                             </p:column>
-                            <p:column headerText="En tienda" style="width: 100px">
+                            <p:column headerText="En tienda" style="width: 45px">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
                                     <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
@@ -207,61 +202,35 @@
                                     <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
                                 </p:cellEditor>
                             </p:column>
+                            <p:column headerText="Transferencia" style="width: 60px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Folio" style="width: 40px">
+                                <p:cellEditor>
+                                    <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
+                                    <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
+                                </p:cellEditor>
+                            </p:column>
 
-                            <p:column style="width:32px">
+                            <p:column style="width:20px">
                                 <p:rowEditor />
                             </p:column>
                         </p:dataTable>
-
-
-                        <div class="ui-g">
-                            <div class="ui-g-12">
-                                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                                                 actionListener="#{dtAddRowView.onAddNew()}" oncomplete="PF('cars1').addRow();"/>
-                            </div>
-                        </div>
-
-                    </h:form>-->
-                    <!--<div class="ui-g-12 ui-md-12">
-                        <p:dataTable var="car" value="" reflow="true" paginator="true">
-                            <p:column headerText="Cantidad">
-                                <h:outputText value="5" />
-                            </p:column>
-                            <p:column headerText="Clave">
-                                <h:outputText value="0987654321" />
-                            </p:column>
-                            <p:column headerText="Descripción">
-                                <h:outputText value="Este modelo es nuevo" />
-                            </p:column>
-                            <p:column headerText="Precio">
-                                <h:outputText value="2500" />
-                            </p:column>
-                            <p:column headerText="Importe deducible">
-                                <h:outputText value="1000" />
-                            </p:column>
-                            <p:column headerText="En tienda">
-                                <h:outputText value="Si" />
-                            </p:column>
-                            <p:column headerText="Localización">
-                                <h:outputText value="Tapachula" />
-                            </p:column>
-                            <p:column headerText="Transferencia">
-                                <h:outputText value="#{car.color}" />
-                            </p:column>
-                            <p:column headerText="Folio">
-                                <h:outputText value="#{car.color}" />
-                            </p:column>
-                        </p:dataTable>
-                    </div>-->
+                        
+ 
+    <!--<div class="ui-g">
+        <div class="ui-g-12">
+            <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                          actionListener="#{dtAddRowView.onAddNew()}" oncomplete="PF('cars1').addRow();"/>
+        </div>
+    </div>-->
+ 
+                    </h:form>    
                 </div>
-
-            </p:panel>
-
-
-
-
-
-            <div class="ui-g ui-fluid">
+                <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-2">
                     <p:outputLabel value="Uretano: "/>
                     <p:selectOneButton value="#{selectOneView.option}">
@@ -288,30 +257,34 @@
                     </p:selectOneButton>
                 </div>
             </div>
-
-            <h4>Datos del siniestro</h4>
-
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-4">
-                    <p:outputLabel value="Campaña: "/>
+            </p:panel>
+            <p:panel header="Datos del siniestro" class="margin_panel">
+                <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-6">
+                <p:outputLabel value="Campaña: "/>
                     <p:inputText placeholder=""/>
                 </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Fecha de accidente: "/>
-                    <p:inputText placeholder=""/>
+                <div class="ui-g-12 ui-md-3">
+                <p:outputLabel value="Fecha de accidente: "/>
+                <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                        <p:calendar id="cal_" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="dd-mm-aaaa"/>
+                    </div>
                 </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Hora: "/>
-                    <p:inputText placeholder=""/>
+                <div class="ui-g-12 ui-md-3">
+                <p:outputLabel value="Hora: "/>
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                        <p:calendar id="time" value="#{calendarView.date9}" effect="slide" pattern="HH:mm" timeOnly="true" locale="es" placeholder="hh:mm"/>
+                    </div>
                 </div>
-                <div class="ui-g-12 ui-md-9">
-                    <p:outputLabel value="Como ocurrio el siniestro "/>
+                <div class="ui-g-12 ui-md-12">
+                <p:outputLabel value="Como ocurrio el siniestro "/>
                     <p:inputTextarea/>
                 </div>
             </div>
-
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-2">
+                <div class="ui-g ui-fluid">
+                <div class="ui-g-12 ui-md-3">
                     <p:outputLabel value="Telefono: "/>
                     <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
@@ -324,69 +297,74 @@
                         <f:selectItem itemLabel="Si" itemValue="" />
                         <f:selectItem itemLabel="No" itemValue="" />
                     </p:selectOneButton>
-                </div>     
-            </div>
-
-
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-9">
-                    <p:outputLabel value="Motivo de rechazo "/>
+                </div>
+                    <div class="ui-g-12 ui-md-6">
+                <p:outputLabel value="Motivo de rechazo "/>
                     <p:inputText/>
                 </div>
-            </div>
-
-            <h4>Datos de facturación: </h4>
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-9">
-                    <p:outputLabel value="Razón Social: "/>
-                    <p:inputText placeholder=""/>
+             </div>
+            
+ 
+            
+                
+            </p:panel>
+            
+            <p:panel header="Datos de facturación" class="margin_panel">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-8">
+                        <p:outputLabel value="Razón Social: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:outputLabel value="RFC: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Direccion: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-1">
+                        <p:outputLabel value="Numero: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Colonia: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-1">
+                        <p:outputLabel value="C.P. "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Localidad: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Municipio: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Estado: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Correo: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                            <p:inputText placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Telefono: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
+                            <p:inputText placeholder=""/>
+                        </div>
+                    </div>
                 </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="RFC: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Direccion: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-1">
-                    <p:outputLabel value="Numero: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Colonia: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-1">
-                    <p:outputLabel value="C.P. "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Localidad: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Municipio: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Estado: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-1">
-                    <p:outputLabel value="Correo: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-1">
-                    <p:outputLabel value="Telefono: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-
-
-
-            </div>
-            <h4>Instalación</h4>
-            <div class="ui-g ui-fluid">
+            </p:panel>
+            <p:panel header="Instalación" class="margin_panel">
+                <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-6">
                     <p:outputLabel value="Instalador 1: "/>
                     <p:inputText placeholder=""/>
@@ -397,6 +375,19 @@
                 </div>
 
             </div>
+                
+            </p:panel>
+            <p:panel header="Entrega de vehiculo" class="margin_panel">
+                
+            </p:panel>
+            
+            
+            
+            
+            
+            
+            
+             
 
         </h:form>
     </h:body>
