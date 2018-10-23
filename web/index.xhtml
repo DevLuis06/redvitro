@@ -22,27 +22,27 @@
                         <p:calendar id="cal" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="Fecha"/>
                     </div>
                 </div>
-                
-                    <div class="ui-g-12 ui-md-2">
-                        <div class="ui-inputgroup">
-                            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
-                            <p:inputText placeholder="Hora"/>
-                        </div>
-                    </div>
-                
-                    <div class="ui-g-12 ui-md-4">
-                        <div class="ui-inputgroup">
-                            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-                            <p:inputText placeholder="Atiende"/>
-                        </div>
-                    </div>
 
-                    <div class="ui-g-12 ui-md-3">
-                        <div class="ui-inputgroup">
-                            <span class="ui-inputgroup-addon"><i class="fa fa-sticky-note"></i></span>
-                            <p:inputText placeholder="Registro"/>
-                        </div>
-                    </div>         
+                <div class="ui-g-12 ui-md-2">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                        <p:inputText placeholder="Hora"/>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-4">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                        <p:inputText placeholder="Atiende"/>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-3">
+                    <div class="ui-inputgroup">
+                        <span class="ui-inputgroup-addon"><i class="fa fa-sticky-note"></i></span>
+                        <p:inputText placeholder="Registro"/>
+                    </div>
+                </div>         
             </div>
             <p:panel header="Tipo de atención" class="margin_panel">
                 <div class="ui-g ui-fluid">
@@ -71,29 +71,29 @@
                             <f:selectItems value="#{principal.get_category_marca()}" />
                         </p:selectOneMenu>
                     </div>
-                <div class="ui-g-12 ui-md-3">
-                    <p:selectOneMenu id="Modelo" value="#{principal.modelo}">
-                        <p:ajax  update="Anio"/>
-                        <f:selectItem itemLabel="Modelo" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{principal.get_category_modelo()}" />
-                    </p:selectOneMenu>
-                </div>
-                <div class="ui-g-12 ui-md-3">
-                    <p:selectOneMenu id="Anio" value="#{principal.anio}">
-                        <f:selectItem itemLabel="Año" itemValue="" noSelectionOption="true" />
-                        <f:selectItems value="#{principal.get_fuckanio(principal.marca, principal.modelo)}" />
-                    </p:selectOneMenu>
-                </div>
-                <div class="ui-g-12 ui-md-3">
-                    <p:inputText placeholder="Placas"/>
-                </div>
-                <div class="ui-g-12 ui-md-12">
-                   <p:outputLabel value="Observaciones:"/>
-                    <p:inputText/>
-                </div>
-            </div>     
+                    <div class="ui-g-12 ui-md-3">
+                        <p:selectOneMenu id="Modelo" value="#{principal.modelo}">
+                            <p:ajax  update="Anio"/>
+                            <f:selectItem itemLabel="Modelo" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{principal.get_category_modelo()}" />
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:selectOneMenu id="Anio" value="#{principal.anio}">
+                            <f:selectItem itemLabel="Año" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{principal.get_fuckanio(principal.marca, principal.modelo)}" />
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:inputText placeholder="Placas"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p:outputLabel value="Observaciones:"/>
+                        <p:inputText/>
+                    </div>
+                </div>     
             </p:panel>
-           
+
             <p:panel header="Productos" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-2">
@@ -133,7 +133,7 @@
                             <f:selectItem itemLabel="No" itemValue="" />
                         </p:selectOneButton>
                     </div>
-                    
+
                     <div class="ui-g-12 ui-md-3">
                         <p:outputLabel value="Localizacion: "/>
                         <div class="ui-inputgroup">
@@ -152,7 +152,7 @@
                     </div>
                     <div class="ui-g-12 ui-md-12">
                         <p:button icon="fa fa-plus-square" value="Agregar"></p:button>
-                       <!-- <p:commandButton value="Agregar" id="ajax" update="growl"  styleClass="ui-priority-primary" />-->
+                        <!-- <p:commandButton value="Agregar" id="ajax" update="growl"  styleClass="ui-priority-primary" />-->
                     </div>
                     <div class="divider_"></div>
                     
@@ -366,14 +366,14 @@
             <p:panel header="Instalación" class="margin_panel">
                 <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-6">
-                <p:outputLabel value="Instalador 1: "/>
+                    <p:outputLabel value="Instalador 1: "/>
                     <p:inputText placeholder=""/>
                 </div>
                 <div class="ui-g-12 ui-md-6">
-                <p:outputLabel value="Instalador 2: "/>
+                    <p:outputLabel value="Instalador 2: "/>
                     <p:inputText placeholder=""/>
                 </div>
-                
+
             </div>
                 
             </p:panel>
