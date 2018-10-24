@@ -29,7 +29,8 @@ public class branchbean_ceo {
             branch = new branch_controller();
             lstEmpleado = branch.listar();
         } catch (Exception e) {
-            throw e;
+//            throw e;
+            System.out.println("Error: "+e);
         }
     }
 

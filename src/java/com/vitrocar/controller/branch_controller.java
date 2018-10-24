@@ -22,7 +22,12 @@ import javax.faces.bean.RequestScoped;
 @RequestScoped
 public class branch_controller extends DataBase{
 
+    
     private String sucursal;
+    
+    private String Sucursales;
+    
+    
     private List<String> get_sucursal = new ArrayList<>();
     Empleado emp = new Empleado();
     
@@ -30,10 +35,7 @@ public class branch_controller extends DataBase{
         try {
             
             DataBase db = new DataBase();
-
             Connection connection = null;
-//            Class.forName("org.postgresql.Driver");
-//            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/vitrocar", "postgres", "123456");
             connection = db.connection();
             PreparedStatement ps = null;
             ps = connection.prepareStatement("select * from sucursal;");
@@ -46,34 +48,63 @@ public class branch_controller extends DataBase{
         }
         return get_sucursal;
     }
-    
-    
-    public List<Empleado> listar() throws Exception{
-        System.out.println("sucursal: "+getSucursal());
+        
+        
+        
+       
+    public List<Empleado> listar() throws Exception {
+        System.out.println("sucursal:"+Sucursales);
+        
         List<Empleado> lista;
-        ResultSet rs;
+        Connection con = null;
+        ResultSet rs= null;
+        PreparedStatement st = null;
+         DataBase db = new DataBase();
         try {
-            this.connection();
-            PreparedStatement ps = this.connection().prepareCall("select e.nombre, e.direccion, e.users from empleado e, puesto p where p.id_puesto = e.id_puesto and e.id_sucursal =(select id_sucursal from sucursal where nombre = '?'); ");
-            ps.setString(1, this.getSucursal());
-            rs = ps.executeQuery();
-            lista = new ArrayList();
-            while (rs.next()) {                
-                    Empleado em = new Empleado();
-                    em.setNombre(rs.getString("nombre"));
-                    em.setDireccion(rs.getString("direccion"));
-                    em.setUsers(rs.getString("users"));
-//                    em.setPuesto(rs.getInt("id_puesto"));
-                    lista.add(em);
-            }
+            con = db.connection();
+            st = con.prepareStatement("select e.nombre, e.direccion, e.users from empleado e, puesto p where p.id_puesto = e.id_puesto;");
+            rs = st.executeQuery();
+            lista = new ArrayList<>();
             
+            while (rs.next()) {
+                Empleado puest = new Empleado();
+                puest.setNombre(rs.getString("nombre"));
+                puest.setDireccion(rs.getString("direccion"));
+                puest.setUsers(rs.getString("users"));
+                lista.add(puest);
+            }
         } catch (Exception e) {
             throw e;
-        }finally{
-            
+        } finally {
+            db.close(con);
         }
         return lista;
     }
+    
+//    
+//    public List<Empleado> listar() throws Exception{
+//        //System.out.println("sucursal: "+getSucursal());
+//        List<Empleado> lista;
+//        ResultSet rs= null;
+//        try {
+//            this.connection();
+//            PreparedStatement ps = this.connection().prepareCall("select e.nombre, e.direccion, e.users from empleado e, puesto p where p.id_puesto = e.id_puesto ; ");
+//            ps.setString(1, this.getSucursal());
+//            rs = ps.executeQuery();
+//            lista = new ArrayList();
+//            while (rs.next()) {                
+//                    Empleado em = new Empleado();
+//                    em.setNombre(rs.getString("nombre"));
+//                    em.setDireccion(rs.getString("direccion"));
+//                    em.setUsers(rs.getString("users"));
+//                    lista.add(em);
+//            }
+//            
+//        } catch (Exception e) {
+//            throw e;
+//        }
+//        return lista;
+//    }
     
     
     
@@ -93,6 +124,25 @@ public class branch_controller extends DataBase{
     public void setGet_sucursal(List<String> get_sucursal) {
         this.get_sucursal = get_sucursal;
     }
+
+    public Empleado getEmp() {
+        return emp;
+    }
+
+    public void setEmp(Empleado emp) {
+        this.emp = emp;
+    }
+
+    public String getSucursales() {
+        return Sucursales;
+    }
+
+    public void setSucursales(String Sucursales) {
+        this.Sucursales = Sucursales;
+    }
+    
+    
+    
     
     
 
