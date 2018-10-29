@@ -367,12 +367,45 @@
                 <div class="ui-g ui-fluid">
                 <div class="ui-g-12 ui-md-6">
                     <p:outputLabel value="Instalador 1: "/>
-                    <p:inputText placeholder=""/>
-                </div>
+                        <p:selectOneMenu id="instaladaor_1" value="#{principal.marca}">
+                            <p:ajax update="Modelo" />
+                            <f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{principal.get_category_marca()}" />
+                        </p:selectOneMenu>
+                    </div>
                 <div class="ui-g-12 ui-md-6">
                     <p:outputLabel value="Instalador 2: "/>
-                    <p:inputText placeholder=""/>
+                    <p:selectOneMenu id="instaladaor_2" value="#{principal.marca}">
+                            <p:ajax update="Modelo" />
+                            <f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{principal.get_category_marca()}" />
+                        </p:selectOneMenu>
+                    
                 </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p:outputLabel value="Indicaciones"/>
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Tomar fotos" itemValue="asegurado"/>
+                            <f:selectItem itemLabel="Tomar calcas(serie)" itemValue="" />
+                            <f:selectItem itemLabel="Extraer calcomanias" itemValue="" />
+                            <f:selectItem itemLabel="Entregar cristal dañado" itemValue="cortesia" />
+                        </p:selectOneButton>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:outputLabel value="Hora de asignacion: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                            <p:inputText placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-8">
+                        <p:outputLabel value="Indicaciones extras: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-at"></i></span>
+                            <p:inputText placeholder=""/>
+                        </div>
+                    </div>
+                    
 
             </div>
                 
