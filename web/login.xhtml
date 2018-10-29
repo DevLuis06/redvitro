@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -13,30 +13,31 @@
     </h:head>
     <h:body>
         <h:form>
+            <p:messages id="msj" autoUpdate="true" showDetail="true" />
             <p:panel header="Iniciar Sesión" class="margin_panel ui-md-6 login">
                 <div class="ui-g ui-fluid">
-    <div class="ui-g-12 ui-md-12">
-        <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-            <p:inputText placeholder="Nombre de usuario" />      
-        </div>
-    </div>                    
-</div>
+                    <div class="ui-g-12 ui-md-12">
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                            <p:inputText placeholder="Nombre de usuario" value="#{login.emp.users}"/>      
+                        </div>
+                    </div>                    
+                </div>
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-12">
-        <div class="ui-inputgroup">
-            <span class="ui-inputgroup-addon"><i class="fa fa-unlock-alt"></i></span>
-            <p:inputText placeholder="Contraseña" />   
-        </div>
-    </div>
-                    
-        </div>
-                 <p:separator />
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-unlock-alt"></i></span>
+                            <p:password placeholder="Contraseña" value="#{login.emp.passwd}" />   
+                        </div>
+                    </div>
+
+                </div>
+                <p:separator />
                 <div class="ui-g ui-fluid">
-                                    <p:commandButton value="Iniciar Sesión"  icon="fa fa-check"/>
+                    <p:commandButton value="Iniciar Sesión"  icon="fa fa-check" action="#{login.iniciarSesion()}" update="msj" />
 
                 </div>
             </p:panel>  
         </h:form>
     </h:body>
-</html>
+</html>-->

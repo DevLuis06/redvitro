@@ -35,4 +35,12 @@ public class DataBase {
             return null;
         }        return resultado;
     }
+    
+    
+    public static void close(Connection con) {
+        try {
+            con.close();
+        } catch (Exception ex) {
+        }
+    }
 }
