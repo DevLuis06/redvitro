@@ -46,7 +46,7 @@
             </div>
             <p:panel header="Tipo de atención" class="margin_panel">
                 <div class="ui-g ui-fluid">
-                    <div class="ui-g-12 ui-md-7">
+                    <div class="ui-g-12 ui-md-12">
                         <p:selectOneButton value="#{selectOneView.option}">
                             <f:selectItem itemLabel="Asegurado" itemValue="asegurado"/>
                             <f:selectItem itemLabel="Pub. en gral" itemValue="" />
@@ -54,11 +54,18 @@
                             <f:selectItem itemLabel="Cortesia" itemValue="cortesia" />
                         </p:selectOneButton>
                     </div>
-                    <div class="ui-g-12 ui-md-2">
+                    <div class="ui-g-12 ui-md-4">
                         <p:inputText placeholder="REF" disabled="true"/>
                     </div>
-                    <div class="ui-g-12 ui-md-2">
+                    <div class="ui-g-12 ui-md-4">
                         <p:inputText placeholder="AUT" disabled="true"/>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:selectOneMenu id="aseguradora" value="#{principal.marca}" disabled="true">
+                            <p:ajax update="Modelo" />
+                            <f:selectItem itemLabel="Aseguradoras" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{principal.get_category_marca()}" />
+                        </p:selectOneMenu>
                     </div>
                 </div>
             </p:panel>
@@ -405,13 +412,41 @@
                             <p:inputText placeholder=""/>
                         </div>
                     </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:outputLabel value="Hora de terminación: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                            <p:inputText placeholder=""/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-8">
+                        <p:outputLabel value="Revisó: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                            <p:inputText placeholder=""/>
+                        </div>
+                    </div>
                     
 
             </div>
                 
             </p:panel>
             <p:panel header="Entrega de vehiculo" class="margin_panel">
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-4">
+                            <p:inputText placeholder=""/>
+                           
+                    </div>
+                    <div class="ui-g-12 ui-md-8">
+                       
+        
+                          <p:outputLabel value="Recibí mi vehivulo en perfectas condiciones con los servicios terminados y materiales solicitados"/>
+                           
+                            
                 
+                    
+                    </div>
+                </div>
             </p:panel>
             
             
