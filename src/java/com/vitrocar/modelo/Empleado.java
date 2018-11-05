@@ -18,9 +18,7 @@ public class Empleado {
     private Sucursal sucursal;
     private String nombre;
     private String direccion;
-    @Column(name = "users")
     private String users;
-    @Column(name = "passwd")
     private String passwd;
 
     public int getIdEmpleado() {

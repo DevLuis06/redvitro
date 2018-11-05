@@ -47,7 +47,7 @@
             <p:panel header="Tipo de atención" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-12">
-                        <p:selectOneButton value="#{selectOneView.option}">
+                        <p:selectOneButton value="#{selectOneView.option}" >
                             <f:selectItem itemLabel="Asegurado" itemValue="asegurado"/>
                             <f:selectItem itemLabel="Pub. en gral" itemValue="" />
                             <f:selectItem itemLabel="Garantia" itemValue="" />
@@ -55,16 +55,16 @@
                         </p:selectOneButton>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <p:inputText placeholder="REF" disabled="true"/>
+                        <p:inputText placeholder="REF" disabled="true" id="ref"/>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <p:inputText placeholder="AUT" disabled="true"/>
+                        <p:inputText placeholder="AUT" disabled="true" id="aut"/>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <p:selectOneMenu id="aseguradora" value="#{principal.marca}" disabled="true">
+                        <p:selectOneMenu id="asegu" value="#{principal.asegu}" disabled="true">
                             <p:ajax update="Modelo" />
                             <f:selectItem itemLabel="Aseguradoras" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{principal.get_category_marca()}" />
+                            <f:selectItems value="#{principal.get_list_aseg()}" />
                         </p:selectOneMenu>
                     </div>
                 </div>

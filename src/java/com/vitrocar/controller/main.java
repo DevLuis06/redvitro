@@ -30,10 +30,14 @@ public class main {
     private String marc;
     private String model;
     
+    private String asegu;
+    
+    
     private List<String> get_marca = new ArrayList<>();
     private List<String> get_modelo = new ArrayList<>();
     private List<String> get_anio = new ArrayList<>();
-
+    
+    private List<String> get_aseg = new ArrayList<>();
     
     
     
@@ -78,10 +82,7 @@ public class main {
         }
           System.out.println("prueba 0.5");
         System.out.println("marca 0.5 : " + marc+"\n");
-        return get_modelo;
-        
-        
-        
+        return get_modelo;       
     }
 
 //    public void onModeloChange() {
@@ -114,6 +115,29 @@ public class main {
         }
         return get_anio;
     }
+    
+    
+    
+    public List<String> get_list_aseg() {
+        try {
+            DataBase db = new DataBase();
+
+            Connection connection = null;
+            connection = db.connection();
+            PreparedStatement ps = null;
+            ps = connection.prepareStatement("select * from aseguradora;");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                get_aseg.add(rs.getString("nombre"));
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return get_aseg;
+    }
+    
+    
+    
 
     public main() {
     }
@@ -166,4 +190,22 @@ public class main {
         this.get_anio = get_anio;
     }
 
+    public String getAsegu() {
+        return asegu;
+    }
+
+    public void setAsegu(String asegu) {
+        this.asegu = asegu;
+    }
+
+    public List<String> getGet_aseg() {
+        return get_aseg;
+    }
+
+    public void setGet_aseg(List<String> get_aseg) {
+        this.get_aseg = get_aseg;
+    }
+
+    
+    
 }
