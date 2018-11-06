@@ -6,7 +6,7 @@
 package com.vitrocar.bean;
 
 import com.vitrocar.controller.branch_controller;
-import com.vitrocar.modelo.Empleado;
+import com.vitrocar.model.Empleado;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,15 +22,15 @@ public class branchbean_ceo {
     private List<Empleado> lstEmpleado;
     private Empleado empleado;
 
-    public void insert(){
-        //branch_controller branch;
-        try {
-           branch_controller branch = new branch_controller();
-            branch.branch_insert(empleado);
-        } catch (Exception e) {
-            System.out.println("Error Insertar: "+e);
-        }
-    }
+//    public void insert(){
+//        //branch_controller branch;
+//        try {
+//           branch_controller branch = new branch_controller();
+//            branch.branch_insert(empleado);
+//        } catch (Exception e) {
+//            System.out.println("Error Insertar: "+e);
+//        }
+//    }
     
     
     

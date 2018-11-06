@@ -5,16 +5,19 @@
  */
 package com.vitrocar.controller;
 
-import com.vitrocar.modelo.Empleado;
+import com.vitrocar.model.Empleado;
 import com.vitrocar.modelo.Puesto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.hibernate.metamodel.relational.Database;
+import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
 
 /**
  *
@@ -24,6 +27,11 @@ import org.hibernate.metamodel.relational.Database;
 @RequestScoped
 public class branch_controller extends DataBase {
 
+    private String nombre;
+    private String direccion;
+    private String users;
+    private String passwd;
+
     private String sucursal;
 
     private String Sucursales;
@@ -31,27 +39,38 @@ public class branch_controller extends DataBase {
     private List<String> get_sucursal = new ArrayList<>();
     Empleado emp = new Empleado();
 
-    
-    public void branch_insert(Empleado empl) throws Exception{
+    public void branch_insert() throws Exception {
+
+        String nom = this.getNombre();
+        String dir = this.getDireccion();
+        String usr = this.getUsers();
+        String pw = this.getPasswd();
+        System.out.println("nombre: " + nom + "\ndireccion:" + dir + "\nUser: " + usr + "\nPasswd: " + pw);
+
         try {
             DataBase db = new DataBase();
-            Connection con=null;
+            Connection con;
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("insert into empleado (nombre, direccion, users,passwd) values('?','?','?','?'); ");
-            ps.setString(1, empl.getNombre());
-            ps.setString(2, empl.getDireccion());
-            ps.setString(3,empl.getUsers());
-            ps.setString(4,empl.getPasswd());
-            ps.executeUpdate();
+            PreparedStatement ps = con.prepareStatement("insert into empleado (nombre,direccion,users,passwd) values(?,?,?,?); ");
+            ps.setString(1, nom);
+            ps.setString(2, dir);
+            ps.setString(3, usr);
+            ps.setString(4, pw);
+            ps.execute();
+            if (ps != null) {
+                System.out.println("Empleado insertado");
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empleado Insertado", "Nombre:"+nom );
+
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }
+
         } catch (Exception e) {
             throw e;
-        } finally{
-            
+        } finally {
+
         }
     }
-    
-    
-    
+
     public List<String> get_sucursal() {
         try {
             DataBase db = new DataBase();
@@ -120,6 +139,7 @@ public class branch_controller extends DataBase {
                 emple.setUsers(rs.getString("users"));
             }
         } catch (Exception e) {
+            throw  e;
         }
 
         return emple;
@@ -163,6 +183,38 @@ public class branch_controller extends DataBase {
 
     public void setSucursal(String sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getUsers() {
+        return users;
+    }
+
+    public void setUsers(String users) {
+        this.users = users;
+    }
+
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
     }
 
 }
