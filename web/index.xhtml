@@ -13,8 +13,17 @@
         <script src="js/spanish_translation_pf.js" />
         <script src="js/view_main.js"/>
         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+        <script type="text/javascript">
+            function hidde_() {
+                var domobj = document.getElementsByClassName("ui-selectonemenu");
+                var arrdomobj =domobj[0];
+                arrdomobj.classList.add("ui-state-disabled");
+            }
+        </script>
     </h:head>   
-    <h:body>
+    <h:body onload="hidde_()">
+        
+      
         <div class="logo_">
             <img class="center_" src="resources/images/logo.png"/>
         </div>
@@ -49,15 +58,17 @@
                     </div>
                 </div>         
             </div>
-            <!--<p:panel header="Tipo de atención" class="margin_panel">
+            
+            <p:panel header="Tipo de atención" class="margin_panel">
                 <div class="ui-g ui-fluid">
+                    <h:form>
                     <div class="ui-g-12 ui-md-12">
-                        <p:selectOneButton value="#{selectOneView.option}">
-                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado" />
+                        <p:selectOneButton value="toggle" onchange="toggle('#{requestScope.foo.clientId}');return false;" >
+                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado" id="sob"/>
                             <f:selectItem itemLabel="Pub. en gral" itemValue="general" />
                             <f:selectItem itemLabel="Garantia" itemValue="garantia" />
                             <f:selectItem itemLabel="Cortesia" itemValue="cortesia" />
-                            <f:ajax listener="#{selectOneView.setOption(option)}"/>  
+                            <!--<f:ajax listener="#{selectOneView.setOption(option)}"/> -->
                         </p:selectOneButton>
                     </div>
                   
@@ -68,36 +79,36 @@
                         <p:inputText placeholder="AUT" disabled="true" id="aut"/>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <p:selectOneMenu id="asegu" value="#{principal.asegu}" disabled="#{selectOneView.disable}">
-                            <p:ajax update="Modelo"/>
+                        <p:selectOneMenu id="asegu" binding="#{requestScope.foo}"  style="display: block;">
+                            <!--<p:ajax update="Modelo"/>-->
                             <f:selectItem itemLabel="#{selectOneView.disable}" itemValue="" noSelectionOption="true"/>
                             <f:selectItems value="#{principal.get_list_aseg()}" />
                         </p:selectOneMenu>
                     </div>
-                </div>
-            </p:panel>-->
-            <!-- P R U E B A -->
-            <p:panel header="prueba">
-                <h:form>
-                <div class="ui-g ui-fluid">
-                    <div class="ui-g-12 ui-md-12">
-                        <p:commandButton update=""  actionListener="#{bean.button1}" value="button1" disabled="#{bean.disable}"> 
-                            <f:setPropertyActionListener value="#{false}" target="#{bean.disable}"/>   
-                        </p:commandButton> 
-
-
-                         <p:commandButton update=""  actionListener="#{bean.button2}" value="button1" disabled="#{!(bean.disable)}"> 
-                            <f:setPropertyActionListener value="#{true}" target="#{bean.disable}"/>    
-                         </p:commandButton> 
-                    </div>
-                </div>
-                    
                     </h:form>
+                    <script type="text/javascript">
+                        function toggle(id) {
+                            
+                            var element = document.getElementById(id);
+                            var sobget = document.getElementsByClassName("ui-helper-hidden-accessible");
+                            
+                            var arrsobget = sobget[0];
+                            console.log(arrsobget.value);
+                            
+                            
+                            if(element.style.display == 'block') {
+                                element.classList.remove("ui-state-disabled");
+                                element.classList.add("ui-state-default");
+                                element.style.display = "";
+                            } else {
+                                element.classList.remove("ui-state-default");
+                                element.classList.add("ui-state-disabled");
+                                element.style.display = "block";
+                            }
+                        }
+                    </script>
+                </div>
             </p:panel>
-            
-            
-            
-            
             
             <p:panel header="Vehiculo" class="margin_panel">
                 <div class="ui-g ui-fluid">
