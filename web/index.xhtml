@@ -86,27 +86,6 @@
                         </p:selectOneMenu>
                     </div>
                     </h:form>
-                    <script type="text/javascript">
-                        function toggle(id) {
-                            
-                            var element = document.getElementById(id);
-                            var sobget = document.getElementsByClassName("ui-helper-hidden-accessible");
-                            
-                            var arrsobget = sobget[0];
-                            console.log(arrsobget.value);
-                            
-                            
-                            if(element.style.display == 'block') {
-                                element.classList.remove("ui-state-disabled");
-                                element.classList.add("ui-state-default");
-                                element.style.display = "";
-                            } else {
-                                element.classList.remove("ui-state-default");
-                                element.classList.add("ui-state-disabled");
-                                element.style.display = "block";
-                            }
-                        }
-                    </script>
                 </div>
             </p:panel>
             

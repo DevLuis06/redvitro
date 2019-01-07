@@ -34,11 +34,57 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight:bold;
+    color: #016dcd;
 }
 
 .logo_{
     width: 100%;
-    background: red;
+    height: 150px;
+    background: #016dcd;
     display: flex;
     justify-content: center;
+}
+.logo_ img{
+    height: 100%;
+}
+.ui-datepicker .ui-datepicker-header{
+    background: #016dcd;
+    color: #FFF;
+    text-shadow:none;
+}
+.ui-state-highlight, .ui-widget-content .ui-state-highlight{
+    text-shadow: 1px 1px 1px #016dcd;
+}
+.ui-widget-content{
+    color:#016dcd;
+}
+.ui-panel-titlebar{
+    background: #016dcd;
+    color: #FFF;
+    border: none; 
+    text-shadow:none;
+}
+
+.ui-inputfield{
+    border-color: #016dcd;
+    text-shadow: none;
+    box-shadow: none;
+}
+.ui-inputfield, .ui-widget-content .ui-inputfield{
+    border-color: #016dcd;
+    border-width: 1px;
+    text-shadow: none;
+    box-shadow: none;
+}
+.ui-inputfield:focus{
+    -webkit-box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
+    -moz-box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
+    box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
+}
+
+.ui-inputgroup .ui-inputgroup-addon{
+    background: #016dcd;
+    border-color: #016dcd;
+    color: #FFF;
+    
 }
