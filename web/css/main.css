@@ -54,7 +54,8 @@
     text-shadow:none;
 }
 .ui-state-highlight, .ui-widget-content .ui-state-highlight{
-    text-shadow: 1px 1px 1px #016dcd;
+    text-shadow: none;
+    background: #016dcd;
 }
 .ui-widget-content{
     color:#016dcd;
@@ -79,6 +80,11 @@
     text-shadow: none;
     box-shadow: none;
 }
+.ui-widget-content .ui-inputfield:focus{
+        -webkit-box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
+    -moz-box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
+    box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
+}
 .ui-inputfield:focus{
     -webkit-box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
     -moz-box-shadow: inset 0px 0px 3px 0px rgba(1,109,205,1);
@@ -94,4 +100,8 @@
     text-shadow:none;
     border-color: #016dcd;
     border-width: 1px;
+    color: #016dcd;
+}
+.ui-selectonemenu label.ui-selectonemenu-label{
+    color: #016dcd;
 }
