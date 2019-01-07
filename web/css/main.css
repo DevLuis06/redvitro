@@ -43,6 +43,7 @@
     background: #016dcd;
     display: flex;
     justify-content: center;
+    border-bottom: 10px solid #fa9829;
 }
 .logo_ img{
     height: 100%;
@@ -57,12 +58,14 @@
 }
 .ui-widget-content{
     color:#016dcd;
+    border: 1px solid #016dcd;
 }
 .ui-panel-titlebar{
     background: #016dcd;
     color: #FFF;
     border: none; 
     text-shadow:none;
+    border-bottom: 5px solid #fa9829;
 }
 
 .ui-inputfield{
@@ -86,5 +89,9 @@
     background: #016dcd;
     border-color: #016dcd;
     color: #FFF;
-    
+}
+.ui-state-default, .ui-widget-content .ui-state-default{
+    text-shadow:none;
+    border-color: #016dcd;
+    border-width: 1px;
 }

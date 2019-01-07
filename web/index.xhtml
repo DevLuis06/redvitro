@@ -63,8 +63,8 @@
                 <div class="ui-g ui-fluid">
                     <h:form>
                     <div class="ui-g-12 ui-md-12">
-                        <p:selectOneButton value="toggle" onchange="toggle('#{requestScope.foo.clientId}');return false;" >
-                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado" id="sob"/>
+                        <p:selectOneButton value="toggle" onchange="toggle('#{requestScope.foo.clientId}');return false;">
+                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado" />
                             <f:selectItem itemLabel="Pub. en gral" itemValue="general" />
                             <f:selectItem itemLabel="Garantia" itemValue="garantia" />
                             <f:selectItem itemLabel="Cortesia" itemValue="cortesia" />
@@ -156,8 +156,8 @@
                     <div class="ui-g-12 ui-md-3">
                         <p:outputLabel value="En tienda: "/>
                         <p:selectOneButton value="#{selectOneView.option}">
-                            <f:selectItem itemLabel="Si" itemValue="" />
-                            <f:selectItem itemLabel="No" itemValue="" />
+                            <f:selectItem itemLabel="Si" itemValue="si" />
+                            <f:selectItem itemLabel="No" itemValue="no" />
                         </p:selectOneButton>
                     </div>
 
@@ -261,15 +261,15 @@
                 <div class="ui-g-12 ui-md-2">
                     <p:outputLabel value="Uretano: "/>
                     <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Si" itemValue="" />
-                        <f:selectItem itemLabel="No" itemValue="" />
+                        <f:selectItem itemLabel="Si" itemValue="si" />
+                        <f:selectItem itemLabel="No" itemValue="no" />
                     </p:selectOneButton>
                 </div>
                 <div class="ui-g-12 ui-md-3">
                     <p:outputLabel value="Presentacion: "/>
                     <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="salchicha" itemValue="" />
-                        <f:selectItem itemLabel="Tubo" itemValue="" />
+                        <f:selectItem itemLabel="Salchicha" itemValue="salchicha" />
+                        <f:selectItem itemLabel="Tubo" itemValue="tubo" />
                     </p:selectOneButton>
                 </div>
                 <div class="ui-g-12 ui-md-4">
@@ -279,8 +279,8 @@
                 <div class="ui-g-12 ui-md-3">
                     <p:outputLabel value="Serv. a Domicilio: "/>
                     <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Si" itemValue="" />
-                        <f:selectItem itemLabel="No" itemValue="" />
+                        <f:selectItem itemLabel="Si" itemValue="si" />
+                        <f:selectItem itemLabel="No" itemValue="no" />
                     </p:selectOneButton>
                 </div>
             </div>
@@ -321,8 +321,8 @@
                 <div class="ui-g-12 ui-md-3">
                     <p:outputLabel value="¿Autorizado por la compañia?"/>
                     <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Si" itemValue="" />
-                        <f:selectItem itemLabel="No" itemValue="" />
+                        <f:selectItem itemLabel="Si" itemValue="si" />
+                        <f:selectItem itemLabel="No" itemValue="no" />
                     </p:selectOneButton>
                 </div>
                     <div class="ui-g-12 ui-md-6">
@@ -412,10 +412,10 @@
                     <div class="ui-g-12 ui-md-12">
                         <p:outputLabel value="Indicaciones"/>
                         <p:selectOneButton value="#{selectOneView.option}">
-                            <f:selectItem itemLabel="Tomar fotos" itemValue="asegurado"/>
-                            <f:selectItem itemLabel="Tomar calcas(serie)" itemValue="" />
-                            <f:selectItem itemLabel="Extraer calcomanias" itemValue="" />
-                            <f:selectItem itemLabel="Entregar cristal dañado" itemValue="cortesia" />
+                            <f:selectItem itemLabel="Tomar fotos" itemValue="tomar_fotos"/>
+                            <f:selectItem itemLabel="Tomar calcas(serie)" itemValue="tomar_calcas" />
+                            <f:selectItem itemLabel="Extraer calcomanias" itemValue="ext_calcomanias" />
+                            <f:selectItem itemLabel="Entregar cristal dañado" itemValue="ent_cristal_dañado" />
                         </p:selectOneButton>
                     </div>
                     <div class="ui-g-12 ui-md-4">
@@ -469,11 +469,11 @@
                     </div>
                     <div class="ui-g-12 ui-md-12">
                         <p:selectOneButton value="#{selectOneView.option}" >
-                            <f:selectItem itemLabel="Requiere reparaciones adicionales" itemValue=""/>
-                            <f:selectItem itemLabel="Requiere autorización" itemValue="" />
-                            <f:selectItem itemLabel="Faltan piezas" itemValue="" />
-                            <f:selectItem itemLabel="El vehiculo no está en condiciones" itemValue="" />
-                            <f:selectItem itemLabel="Otro" itemValue=""/>
+                            <f:selectItem itemLabel="Requiere reparaciones adicionales" itemValue="rep_adicionales"/>
+                            <f:selectItem itemLabel="Requiere autorización" itemValue="autorizacion" />
+                            <f:selectItem itemLabel="Faltan piezas" itemValue="f_piezas" />
+                            <f:selectItem itemLabel="El vehiculo no está en condiciones" itemValue="no_condiciones" />
+                            <f:selectItem itemLabel="Otro" itemValue="otro"/>
                         </p:selectOneButton>
                     </div>
                     <div class="ui-g-12 ui-md-2">
