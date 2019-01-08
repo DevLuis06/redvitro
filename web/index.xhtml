@@ -11,15 +11,29 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <link rel="stylesheet" href="css/main.css"/>
         <script src="js/spanish_translation_pf.js" />
-        <script src="js/view_main.js"/>
         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
         <script type="text/javascript">
             function hidde_() {
+                var content_clicks = document.getElementsByClassName("ui-button");
+                
+                var aseg = content_clicks[0];
+                aseg.setAttribute("onclick", "aseg_clk()");
+                var gara = content_clicks[2];
+                gara.setAttribute("onclick", "gara_clk()");
+                var cort = content_clicks[3];
+                cort.setAttribute("onclick", "cort_clk()");
+ 
                 var domobj = document.getElementsByClassName("ui-selectonemenu");
+                var ref = document.getElementById("j_idt6:j_idt17:ref");
+                var aut =  document.getElementById("j_idt6:j_idt17:aut");
                 var arrdomobj =domobj[0];
                 arrdomobj.classList.add("ui-state-disabled");
+                ref.classList.add("ui-state-disabled");
+                aut.classList.add("ui-state-disabled");
+  
             }
         </script>
+        <script src="js/view_main.js"/>
     </h:head>   
     <h:body onload="hidde_()">
         
@@ -63,9 +77,10 @@
                 <div class="ui-g ui-fluid">
                     <h:form>
                     <div class="ui-g-12 ui-md-12">
-                        <p:selectOneButton value="toggle" onchange="toggle('#{requestScope.foo.clientId}');return false;">
-                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado" />
-                            <f:selectItem itemLabel="Pub. en gral" itemValue="general" />
+                        <!--onchange="toggle('#{requestScope.foo.clientId}');return false;"--> 
+                        <p:selectOneButton value="toggle" >
+                            <f:selectItem itemLabel="Asegurado" itemValue="asegurado"/>
+                            <f:selectItem itemLabel="Pub. en gral" itemValue="general"/>
                             <f:selectItem itemLabel="Garantia" itemValue="garantia" />
                             <f:selectItem itemLabel="Cortesia" itemValue="cortesia" />
                             <!--<f:ajax listener="#{selectOneView.setOption(option)}"/> -->
@@ -73,15 +88,17 @@
                     </div>
                   
                     <div class="ui-g-12 ui-md-4">
-                        <p:inputText placeholder="REF" disabled="true" id="ref"/>
+                        <p:inputText placeholder="REF" id="ref" style="display:block;"/>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <p:inputText placeholder="AUT" disabled="true" id="aut"/>
+                        <p:inputText placeholder="AUT" id="aut" style="display:block;"/>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <p:selectOneMenu id="asegu" binding="#{requestScope.foo}"  style="display: block;">
+                        <!--binding="#{requestScope.foo}"  style="display: block;"-->
+                        <p:selectOneMenu id="asegu" style="display:block;">
                             <!--<p:ajax update="Modelo"/>-->
                             <f:selectItem itemLabel="#{selectOneView.disable}" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="hellow"/>
                             <f:selectItems value="#{principal.get_list_aseg()}" />
                         </p:selectOneMenu>
                     </div>
