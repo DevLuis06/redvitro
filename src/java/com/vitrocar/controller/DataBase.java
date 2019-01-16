@@ -19,7 +19,7 @@ public class DataBase {
     Class.forName("org.postgresql.Driver"); //cargar el driver manualmente
     String urlDatabase =  "jdbc:postgresql://localhost:5432/vitrocar";
   
-    db = DriverManager.getConnection(urlDatabase,  "postgres", "123456");
+    db = DriverManager.getConnection(urlDatabase,  "postgres", "bell");
     
     return db;
     
