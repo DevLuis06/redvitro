@@ -18,6 +18,8 @@
                 
                 var aseg = content_clicks[0];
                 aseg.setAttribute("onclick", "aseg_clk()");
+                var gral = content_clicks[1];
+                gral.setAttribute("onclick","gral_clk()");
                 var gara = content_clicks[2];
                 gara.setAttribute("onclick", "gara_clk()");
                 var cort = content_clicks[3];
@@ -94,12 +96,9 @@
                         <p:inputText placeholder="AUT" id="aut" style="display:block;"/>
                     </div>
                     <div class="ui-g-12 ui-md-4">
-                        <!--binding="#{requestScope.foo}"  style="display: block;"-->
                         <p:selectOneMenu id="asegu" style="display:block;">
-                            <!--<p:ajax update="Modelo"/>-->
-                            <f:selectItem itemLabel="#{selectOneView.disable}" itemValue="" noSelectionOption="true"/>
-                            <f:selectItems value="hellow"/>
-                            <f:selectItems value="#{principal.get_list_aseg()}" />
+                            <f:selectItems itemLabel="Aseguradora" itemValue="" noSelectionValue="true"/>
+                            <f:selectItems value="#{principal.get_list_aseg()}"/>
                         </p:selectOneMenu>
                     </div>
                     </h:form>

@@ -18,7 +18,6 @@ public class SelectOneView {
     }
     public void setDisable(boolean disable) {
        this.disable = disable;
-       System.out.println("Booleano: "+disable);
     }
  
     public void setOption(String option) {
