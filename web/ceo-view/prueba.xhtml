@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<link rel="stylesheet" href="css/main.css"/>
+    <body>
+
+        <ui:composition template="./../ceo/main.xhtml">
+            <ui:define name="content">
+                <h:form id="form">
+
+
+
+                    <div class="ui-g-12 ui-md-12" style="display:block;">
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:outputLabel  for="calini" value="Fecha Inicio" />
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                                <p:calendar id="calini" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="Fecha"/>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-6">
+                            <p:outputLabel  for="calfin" value="Fecha Inicio" />
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                                <p:calendar id="calfin" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="Fecha"/>
+                            </div>
+                        </div>
+                        <div class="ui-g-12 ui-md-6 ui-lg-12">
+                            <p:commandButton value="With Icon" id="search-report-1" action="#{buttonView.buttonAction}" style="position: absolute;right:0px;" icon="ui-icon-search" />
+
+                        </div>
+                    </div>
+
+            
+                            
+
+
+
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

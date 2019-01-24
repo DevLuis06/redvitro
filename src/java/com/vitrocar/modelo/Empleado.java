@@ -5,13 +5,15 @@
  */
 package com.vitrocar.modelo;
 
+import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.persistence.Column;
 
 /**
  *
  * @author red-conexion
  */
-public class Empleado {
+public class Empleado implements Serializable{
 
     private int idEmpleado;
     private Puesto puesto;
@@ -21,6 +23,7 @@ public class Empleado {
     private String users;
     private String passwd;
 
+   
     public int getIdEmpleado() {
         return idEmpleado;
     }
