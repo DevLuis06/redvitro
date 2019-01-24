@@ -54,3 +54,11 @@
 .logo a img{
         width: 100%;
     }
+    #buttonMod, #buttonCan{
+        float: right;
+    }
+    
+    #divbutton{
+        display: block;
+        float: right;
+    }

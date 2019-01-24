@@ -3,13 +3,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <meta http-equiv="refresh" content="0" />
+    <script src="js/ceo.js"/>
     <body>
 
         <ui:composition template="./../ceo/main.xhtml">
 
             <ui:define name="content">
+                <f:event type="preRenderView" listener="#{state_bean.list_country()}" />  <!--Carga la tabla de sucursales -->
+                <p:growl id="msgs1" showDetail="true"/> 
                 <div class="ui-g-12 ui-md-9 ui-g-nopad main">
                     <div class="mainContent clearfix">
                         <h1>Localidad</h1>
@@ -23,6 +27,7 @@
                                         but given to ruthless violence whenever anything stands against the good of the family." />
                                 </h:panelGrid>
                             </p:tab>
+<!--   P e s t a ñ a   M U N I C I P I O ////////////////////////////////////////////////////////////////////////////// -->
                             <p:tab title="Municipio">
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <h:outputText
@@ -32,27 +37,187 @@
                                         but given to ruthless violence whenever anything stands against the good of the family." />
                                 </h:panelGrid>
                             </p:tab>
+                            
+                            
+<!-- ////////////////////////////////////////// P e s t a ñ a   E S T A D O//////////////////////////////////////////////////////////// -->
+                            
                             <p:tab title="Estado">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText
-                                        value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
-                                        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-                                        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
-                                        but given to ruthless violence whenever anything stands against the good of the family." />
-                                </h:panelGrid>
+                                <h:form id="form">
+                                    <div class="ui-g ui-fluid">
+                                        <div class="ui-g-12 ui-md-3">
+
+                                            <p:outputLabel  for="state" value="País:" />
+                                            <p:selectOneMenu id="state"  valueChangeListener="#{state_bean.changeCountry}">
+                                                <f:selectItem itemLabel="Marca" noSelectionOption="true" />
+                                                <f:selectItems value="#{state_bean.lstPais}" var="est" itemLabel="#{est.nombre}" itemValue="#{est.nombre}"/>
+                                                <p:ajax event="change" update="@this" />
+                                            </p:selectOneMenu>
+                                            <p:commandButton value="Listar" action="#{state_bean.listar()}" update="data"/>
+
+                                        </div>
+                                    </div>
+                                    <p:dataTable id="data" styleClass="dtState" var="estado" value="#{state_bean.lstEstado}" selection="#{state_bean.estado}">
+                                        <p:column headerText="ID" style="width:40%" >
+                                            <p:outputLabel value="#{estado.idEstado}"/>
+                                        </p:column>
+                                        <p:column headerText="Nombre" style="width:40%" >
+                                            <p:outputLabel value="#{estado.nombre}"/>
+                                        </p:column>
+                                        <p:column headerText="Direccion" style="width:20%">
+                                            <p:outputLabel value="#{estado.pais}"/>
+                                        </p:column>
+                                        
+                                        <p:column style="width:5%">
+                                            <p:commandButton icon="ui-icon-pencil" update="dialog" actionListener="#{employeebean.leerID(empleado)}" onclick="#{employeebean.setAccion('Modificar')}" oncomplete="PF('widgDatos').show();"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+
+                                            <p:commandButton icon="ui-icon-close" action="#{employeebean.delete_employee(empleado)}"  update="data :msgs1"  >
+                                                <p:confirm header="Confirmación" message="¿Desea eliminar al empleado?" icon="ui-icon-alert"  />
+                                            </p:commandButton>
+
+                                        </p:column>
+
+
+                                    </p:dataTable>
+                                    <!--    Confirmation Delete Employee                  -->  
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+                                            <p:ajax />
+                                        </p:commandButton>
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+                                    </p:confirmDialog>  
+
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:commandButton value="Nuevo" oncomplete="PF('widgDatos').show();"  onclick="#{employeebean.setAccion('Registrar')}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
                             </p:tab>
+
+
+
+<!-- ////////////////////////////////////////////////////////////P e s t a ñ a    P A I S////////////////////////////////////////////////////////////////////// -->
                             <p:tab title="País">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText
-                                        value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
-                                        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-                                        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
-                                        but given to ruthless violence whenever anything stands against the good of the family." />
-                                </h:panelGrid>
+                                <h:form id="form1">
+
+                                    <p:dataTable id="data" styleClass="dtcountry" var="pais" value="#{countrybean_ceo.list()}" >
+                                        <p:column headerText="Id" style="width:20%" >
+                                            <p:outputLabel value="#{pais.idPais}"/>
+                                        </p:column>
+                                        <p:column headerText="Nombre" style="width:40%" >
+                                            <p:outputLabel value="#{pais.nombre}"/>
+                                        </p:column>
+                                        <p:column headerText="Abreviación" style="width:20%">
+                                            <p:outputLabel value="#{pais.abreviacion}"/>
+                                        </p:column>
+
+                                        <p:column style="width:5%">
+                                            <p:commandButton icon="ui-icon-pencil" update="dialogCountry" actionListener="#{countrybean_ceo.leerID(pais)}"  oncomplete="PF('widgCountry').show();"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+
+                                            <p:commandButton icon="ui-icon-close" action="#{countrybean_ceo.delete_branch(pais)}"  update="data :msgs1"  >
+                                                <p:confirm header="Confirmación" message="¿Desea eliminar el País?" icon="ui-icon-alert"  />
+                                            </p:commandButton>
+
+                                        </p:column>
+
+
+                                    </p:dataTable>
+                                    <!--    Confirmation Delete Country                  -->  
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+                                            <p:ajax />
+                                        </p:commandButton>
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+                                    </p:confirmDialog>  
+
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:commandButton value="Nuevo" oncomplete="PF('widgCountry').show();"  onclick="#{countrybean_ceo.registrar()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
                             </p:tab>
                         </p:tabView>
                     </div>
                 </div>
+                
+                
+<!-- ///////////////////////////////////////D I A L O G O        E S T A D O ///////////////////////////////////////////////////////////////////////////// -->
+                <p:dialog id="dialog" showEffect="explode" modal="true" dynamic="true"  styleClass="dialogochi" header="Datos" widgetVar="widgDatos">
+                    <h:form id="diaForm">
+                        <p:panel id="diaPanel">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Id:" />
+                                    <p:inputText id="diaId" disabled="true" placeholder="Id " value="#{employeebean.empleado.idEmpleado}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Nombre:" />
+                                    <p:inputText id="diaName" placeholder="Nombre" value="#{employeebean.empleado.nombre}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Dirección:" />
+                                    <p:inputText id="diaAddress" placeholder="Direccion" value="#{employeebean.empleado.direccion}"  />
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Usuario:" />
+                                    <p:inputText id="diaUser" placeholder="Direccion" value="#{employeebean.empleado.users}"  />
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Contraseña:" />
+                                    <p:inputText id="diaPasswd" placeholder="Direccion" value="#{employeebean.empleado.passwd}"  />
+                                </div>
+
+
+                                <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonMod" value="#{employeebean.accion}" update="@(.dtState) :msgs1" actionListener="#{employeebean.operar()}" oncomplete="PF('widgDatos').hide()"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton   id="buttonCan"    value="Cancelar" onclick="limpiarForm()" actionListener="#{employeebean.onRowCancel()}" update=":msgs1" immediate="true" oncomplete="PF('widgDatos').hide();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
+
+
+
+
+<!-- ///////////////////////////////////////////////  D I A L O G O        P A I S ///////////////////////////////////////////////////////////////////////////// -->
+                <p:dialog id="dialogCountry" showEffect="explode" modal="true" dynamic="true" header="Datos País" widgetVar="widgCountry">
+                    <h:form id="diaFormCountry">
+                        <p:panel id="diaPanelBranch">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Id:" />
+                                    <p:inputText id="countryID" disabled="true" placeholder="Id " value="#{countrybean_ceo.pais.idPais}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Nombre:" />
+                                    <p:inputText id="countryName" placeholder="Nombre" value="#{countrybean_ceo.pais.nombre}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Abreviación:" />
+                                    <p:inputText id="countryAbre" placeholder="Abreviación" value="#{countrybean_ceo.pais.abreviacion}"  />
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonAccCountry" value="#{countrybean_ceo.accion}" update="@(.dtcountry) :msgs1" actionListener="#{countrybean_ceo.operar()}" oncomplete="PF('widgCountry').hide()"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton   id="buttonCan"    value="Cancelar" onclick="limpiarForm()" actionListener="#{countrybean_ceo.onRowCancel()}" update=":msgs1" immediate="true" oncomplete="PF('widgDatos').hide();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
             </ui:define>
 
         </ui:composition>

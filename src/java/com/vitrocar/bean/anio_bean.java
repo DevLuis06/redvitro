@@ -5,50 +5,47 @@
  */
 package com.vitrocar.bean;
 
-import com.vitrocar.controller.branch_controller;
-import com.vitrocar.modelo.Sucursal;
-import java.io.Serializable;
+import com.vitrocar.controller.anio_controller;
+import com.vitrocar.controller.color_controller;
+import com.vitrocar.modelo.Anio;
+import com.vitrocar.modelo.Color;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.PrimeFaces;
-
 
 /**
  *
- * @author red-conexion by Luis D' León
+ * @author red-conexion
  */
-@ManagedBean(name = "branchbean_ceo")
-@ViewScoped
-
-public class branchbean_ceo implements Serializable {
-
+@ManagedBean(name = "anio_bean")
+@SessionScoped
+public class anio_bean {
     
     private String accion = null;
-    private List<Sucursal> lstSucursal;
-    private Sucursal sucursal;
+    private List<Anio> lstAnio;
+    private Anio anio;
     
     public String id;
 
-    public List<Sucursal> getLstSucursal() {
-        return lstSucursal;
+    public List<Anio> getLstAnio() {
+        return lstAnio;
     }
 
-    public void setLstSucursal(List<Sucursal> lstSucursal) {
-        this.lstSucursal = lstSucursal;
+    public void setLstSAnio(List<Anio> lstAnio) {
+        this.lstAnio = lstAnio;
     }
     
-    public Sucursal getSucursal() {
-                if (sucursal == null) {
-            sucursal = new Sucursal();
+    public Anio getAnio() {
+                if (anio == null) {
+            anio = new Anio();
         }
-        return sucursal;
+        return anio;
     }
 
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setAnio(Anio anio) {
+        this.anio = anio;
     }
 
     public String getId() {
@@ -72,32 +69,29 @@ public class branchbean_ceo implements Serializable {
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
-                this.insert();
+                this.insert_anio();
                 break;
             case "Modificar":
-                this.update_branch();
+                this.update_anio();
                 break;
 
         }
     }
 
-    public void insert() {
-        branch_controller branch;
-
+    public void insert_anio() {
         try {
-            branch = new branch_controller();
-            branch.branch_insert(sucursal);
+            anio_controller  ani = new anio_controller();
+            ani.anio_insert(anio);
             
         } catch (Exception e) {
             System.out.println("Error Insertar: " + e);
         }
     }
 
-    private void update_branch() throws Exception {
-//        branch_controller branch;
+    private void update_anio() throws Exception {
         try {
-            branch_controller branch = new branch_controller();
-            branch.branch_modify(sucursal);
+            anio_controller  ani = new anio_controller();
+            ani.anio_modify(anio);
             this.listar();
             accion = null;
             System.out.println("Accion Mod:"+this.getAccion());
@@ -107,44 +101,43 @@ public class branchbean_ceo implements Serializable {
         }
     }
 
-    public void delete_branch(Sucursal suc) {
+    public void delete_anio(Anio anio) {
 //        branch_controller branch;
         try {
-            branch_controller branch = new branch_controller();
-            branch.branch_delete(suc);
+            anio_controller  ani = new anio_controller();
+            ani.anio_delete(anio);
             this.listar();
         } catch (Exception e) {
-            System.out.println("Error eliminar: " + e);
+            System.out.println("Error eliminar color: " + e);
         }
     }
 
  
-    public List<Sucursal> listar() throws Exception {
-        branch_controller branch;
+    public List<Anio> listar() throws Exception {
+        
         try {
-            branch = new branch_controller();
-            lstSucursal = branch.listar();
+            anio_controller  ani = new anio_controller();
+            lstAnio = ani.listar();
         } catch (Exception e) {
 //            throw e;
             System.out.println("Error Listar: " + e);
         }
-        return lstSucursal;
+        return lstAnio;
     }
     
-    public void leerID(Sucursal suc) throws Exception {
+    public void leerID(Anio anio) throws Exception {
         accion = "Modificar";
-        branch_controller branch;
-        Sucursal sucursal;
+        Anio anios;
         System.out.println("accion:"+this.getAccion());
         try {
-            branch = new branch_controller();
-            sucursal = branch.leerID(suc);
+            anio_controller  ani = new anio_controller();
+            anios = ani.leerID(anio);
             System.out.println("presionaste modificar");
-            if (sucursal != null) {
-                this.sucursal = sucursal;
+            if (anios != null) {
+                this.anio = anios;
                 System.out.println("chido, entró sucursal");
             }
-            if (sucursal == null) {
+            if (anios == null) {
                 System.out.println("Vale pito esto");
             }
         } catch (Exception e) {
@@ -156,11 +149,11 @@ public class branchbean_ceo implements Serializable {
     public void onRowCancel() {
         FacesMessage msg = new FacesMessage("Cancelado", ".");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-       sucursal = new Sucursal();
-        sucursal = null;
+       anio = new Anio();
+        anio = null;
         accion = null;
         System.out.println("cancelo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        if (sucursal == null && accion == null) {
+        if (anio == null && accion == null) {
             System.out.println("sucursal vacio modificar");
         } else {
             System.out.println("VALEEEEEE VEEEEEEEEEEEEEEEEEERGAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!");
@@ -171,8 +164,6 @@ public class branchbean_ceo implements Serializable {
     public void registrar(){
         accion = "Registrar";
     }
-    
-
     
     
 }

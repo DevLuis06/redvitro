@@ -3,25 +3,151 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./../ceo/main.xhtml">
 
             <ui:define name="content">
+
+                <p:growl id="growl" life="2000" />
+                <style type="text/css">    
+                    .value {
+                        font-weight: bold;
+                    }
+                </style>
                 <div class="ui-g-12 ui-md-9 ui-g-nopad main">
                     <div class="mainContent clearfix">
                         <h1>Reportes</h1>
                         <p:tabView dynamic="true" cache="true" effect="blind">
                             <p:tab title="Concentrado de Ordenes">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:outputText
-                                        value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding. 
-                                        His beloved son Michael has just come home from the war, but does not intend to become part of his father's business.
-                                        Through Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect, 
-                                        but given to ruthless violence whenever anything stands against the good of the family." />
-                                </h:panelGrid>
+                                <h:form>
+                                    <p:panel header="Tipo de atención" class="margin_panel">
+                                        <div class="ui-g ui-fluid">
+                                            <h:form>
+                                                <div class="ui-g-12 ui-md-12">
+                                                    <p:selectOneButton value="toggle"  onchange="toggle('#{requestScope.foo.clientId}');return false;" >
+                                                        <f:selectItem itemLabel="Fecha" itemValue="fecha" id="sob"/>
+                                                        <f:selectItem itemLabel="Cliente" itemValue="cliente" />
+                                                        <f:selectItem itemLabel="Modelo" itemValue="modelo" />
+                                                        <f:selectItem itemLabel="Sucursal" itemValue="sucursal" />
+                                                        <f:selectItem itemLabel="Aseguradora" itemValue="aseguradora" />
+                                                    </p:selectOneButton>
+                                                </div>
+                                                <!-- ************************** F I L T R O   P O R   F E C H A **************************************** -->
+                                                <div class="ui-g-12 ui-md-12" style="display:block;">
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                                        <p:outputLabel  for="calini" value="Fecha Inicio" />
+                                                        <div class="ui-inputgroup">
+                                                            <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                                                            <p:calendar id="calini" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="Fecha"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-6">
+                                                        <p:outputLabel  for="calfin" value="Fecha Inicio" />
+                                                        <div class="ui-inputgroup">
+                                                            <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                                                            <p:calendar id="calfin" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="Fecha"/>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:commandButton value="Buscar" id="search-report-date" action="#{buttonView.buttonAction}" update="growl"  style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon=" ui-icon-search" />
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- ************************** F I L T R O   P O R   C L I E N T E **************************************** -->
+                                                <div class="ui-g-12 ui-md-12" style="display: block;">
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:outputLabel  for="textclien" value="Nombre del Cliente:" />
+                                                        <p:inputText id="textclien" />
+                                                    </div>
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:commandButton value="Buscar" id="search-report-client" action="#{buttonView.buttonAction}" update="growl"  style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon=" ui-icon-search" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- ************************** F I L T R O   P O R   M O D E L O **************************************** -->
+                                                <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                    <div class="ui-g ui-fluid">
+
+                                                        <div class="ui-g-12 ui-md-3">
+                                                            <p:outputLabel  for="year" value="Año" />
+                                                            <p:selectOneMenu id="year" style="display: block;">
+                                                                <!--<p:ajax update="Modelo"/>-->
+                                                                <f:selectItem  itemValue="" noSelectionOption="true"/>
+                                                                <f:selectItems  />
+                                                            </p:selectOneMenu>  
+                                                        </div>
+
+
+                                                        <div class="ui-g-12 ui-md-3">
+                                                            <p:outputLabel  for="brand" value="Marca" />
+                                                            <p:selectOneMenu id="brand" style="display: block;">
+                                                                <!--<p:ajax update="Modelo"/>-->
+                                                                <f:selectItem  itemValue="" noSelectionOption="true"/>
+                                                                <f:selectItems  />
+                                                            </p:selectOneMenu>  
+                                                        </div>
+                                                        <div class="ui-g-12 ui-md-3">
+                                                            <p:outputLabel  for="model" value="Modelo" /> <p:spacer width="20" height="20" /> <h:outputText value="Basic: " /><p:spacer width="20" height="10" /> <p:inputSwitch  />
+                                                            <p:selectOneMenu id="model" style="display: block;">
+                                                                <!--<p:ajax update="Modelo"/>-->
+                                                                <f:selectItem  itemValue="" noSelectionOption="true"/>
+                                                                <f:selectItems  />
+                                                            </p:selectOneMenu>  
+                                                        </div>
+
+
+
+                                                        <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                            <p:commandButton value="Buscar Marca" id="search-report-brand" action="#{buttonView.buttonAction}" update="growl"  style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon=" ui-icon-search" />
+                                                        </div>
+                                                        <p:separator/>
+                                                        <br/>
+                                                        <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                            <p:commandButton value="Buscar Modelo" id="search-report-model-" action="#{buttonView.buttonAction}" update="growl"  style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon=" ui-icon-search" />
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- ************************** F I L T R O   P O R   S U C U R S A L **************************************** -->
+                                                <div class="ui-g-12 ui-md-12">
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:outputLabel  for="sucu" value="Sucursal" />
+                                                        <p:selectOneMenu id="sucu" style="display: block;">
+                                                            <!--<p:ajax update="Modelo"/>-->
+                                                            <f:selectItem  itemValue="" noSelectionOption="true"/>
+                                                            <f:selectItems  />
+                                                        </p:selectOneMenu>  
+                                                    </div>
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:commandButton value="Buscar" id="search-report-branch" action="#{buttonView.buttonAction}" update="growl"  style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon=" ui-icon-search" />
+                                                    </div>
+                                                </div>
+
+                                                <!-- ************************** F I L T R O   P O R   A S E G U R A D O R A **************************************** -->
+                                                <div class="ui-g-12 ui-md-12">
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:outputLabel  for="asegu" value="Aseguradora" />
+                                                        <p:selectOneMenu id="asegu" binding="#{requestScope.foo}"  style="display: block;">
+                                                            <!--<p:ajax update="Modelo"/>-->
+                                                            <f:selectItem itemLabel="#{selectOneView.disable}" itemValue="" noSelectionOption="true"/>
+                                                            <f:selectItems value="#{principal.get_list_aseg()}" />
+                                                        </p:selectOneMenu>  
+                                                    </div>
+                                                    <div class="ui-g-12 ui-md-6 ui-lg-12">
+                                                        <p:commandButton value="Buscar" id="search-report-insurance" action="#{buttonView.buttonAction}" update="growl"  style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon=" ui-icon-search" />
+                                                    </div>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                    </p:panel>
+
+                                </h:form>
                             </p:tab>
                         </p:tabView>
                     </div>

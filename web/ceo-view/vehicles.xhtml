@@ -11,6 +11,8 @@
         <ui:composition template="./../ceo/main.xhtml">
 
             <ui:define name="content">
+                <f:event type="preRenderView" listener="#{color_bean.listar()}" /> <!-- Carga la tabla en color-->
+                <p:growl id="msgs1" showDetail="true"/> 
                 <div class="ui-g-12 ui-md-9 ui-g-nopad main">
                     <div class="mainContent clearfix">
                         <h1>Vehículos</h1>
@@ -37,6 +39,9 @@
                                     </h:form>
                                 </h:panelGrid>
                             </p:tab>
+                            
+                            <!-- ***************************************** M A R C A S ****************************************************************************-->
+                            
                             <p:tab title="Marcas">
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <h:form>
@@ -55,17 +60,79 @@
 
                                 </h:panelGrid>
                             </p:tab>
-                            <p:tab title="Color">
-                                <h:panelGrid columns="2" cellpadding="10">
 
-                                    <p:dataTable  value="" var="">
+                            <!-- ***************************************** C O L O R ****************************************************************************-->
+
+                            <p:tab title="Color">
+                                <h:form id="form1">
+                                    <p:dataTable id="datacolor" styleClass="dtcolor" var="color" value="#{color_bean.lstColor}" >
+                                        <p:column headerText="Id" style="width:20%" >
+                                            <p:outputLabel value="#{color.id_color}"/>
+                                        </p:column>
+                                        <p:column headerText="Nombre" style="width:40%" >
+                                            <p:outputLabel value="#{color.nombre}"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+                                            <p:commandButton icon="ui-icon-pencil" update="dialogColor" actionListener="#{color_bean.leerID(color)}"  oncomplete="PF('widgColor').show();"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+
+                                            <p:commandButton icon="ui-icon-close" action="#{color_bean.delete_color(color)}"  update="datacolor :msgs1"  >
+                                                <p:confirm header="Confirmación" message="¿Desea eliminar el color?" icon="ui-icon-alert"  />
+                                            </p:commandButton>
+
+                                        </p:column>
+
 
                                     </p:dataTable>
-                                </h:panelGrid>
+                                    <!--    Confirmation Delete Employee                  -->  
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+                                            <p:ajax />
+                                        </p:commandButton>
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+                                    </p:confirmDialog>  
+
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:commandButton value="Nuevo" oncomplete="PF('widgColor').show();"  onclick="#{color_bean.registrar()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
                             </p:tab>
                         </p:tabView>
                     </div>
                 </div>
+
+                <!-- ***************************************** D I A L O G   C O L O R ****************************************************************************-->
+                <p:dialog id="dialogColor" showEffect="explode" modal="true" dynamic="true"  header="Datos" widgetVar="widgColor">
+                    <h:form id="colorForm">
+                        <p:panel id="colorPanel">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Id:" />
+                                    <p:inputText id="colorId" disabled="true" placeholder="Id " value="#{color_bean.color.id_color}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Nombre:" />
+                                    <p:inputText id="colorName" placeholder="Nombre" value="#{color_bean.color.nombre}"/>
+                                </div>
+                                
+
+
+
+                                <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonMod" value="#{color_bean.accion}" onclick="limpiarForm()" update="@(.dtcolor) :msgs1" actionListener="#{color_bean.operar()}" oncomplete="PF('widgColor').hide()"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton   id="buttonCan"    value="Cancelar" onclick="limpiarForm()" actionListener="#{color_bean.onRowCancel()}" update=":msgs1" immediate="true" oncomplete="PF('widgDatos').hide();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
             </ui:define>
 
         </ui:composition>

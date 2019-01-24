@@ -6,7 +6,8 @@
 package com.vitrocar.bean;
 
 import com.vitrocar.controller.branch_controller;
-import com.vitrocar.modelo.Sucursal;
+import com.vitrocar.controller.country_controller;
+import com.vitrocar.modelo.Pais;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -15,40 +16,30 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 
-
 /**
  *
  * @author red-conexion by Luis D' León
  */
-@ManagedBean(name = "branchbean_ceo")
+@ManagedBean(name = "countrybean_ceo")
 @ViewScoped
-
-public class branchbean_ceo implements Serializable {
-
-    
+public class country_bean implements Serializable{
+       
     private String accion = null;
-    private List<Sucursal> lstSucursal;
-    private Sucursal sucursal;
+    private List<Pais> lstPais;
+    private Pais pais;
     
     public String id;
 
-    public List<Sucursal> getLstSucursal() {
-        return lstSucursal;
-    }
-
-    public void setLstSucursal(List<Sucursal> lstSucursal) {
-        this.lstSucursal = lstSucursal;
-    }
     
-    public Sucursal getSucursal() {
-                if (sucursal == null) {
-            sucursal = new Sucursal();
+    public Pais getPais() {
+                if (pais == null) {
+            pais = new Pais();
         }
-        return sucursal;
+        return pais;
     }
 
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public String getId() {
@@ -75,30 +66,29 @@ public class branchbean_ceo implements Serializable {
                 this.insert();
                 break;
             case "Modificar":
-                this.update_branch();
+                this.update_country();
                 break;
 
         }
     }
 
     public void insert() {
-        branch_controller branch;
-
+        country_controller country;
         try {
-            branch = new branch_controller();
-            branch.branch_insert(sucursal);
+            country = new country_controller();
+            country.country_insert(pais);
             
         } catch (Exception e) {
             System.out.println("Error Insertar: " + e);
         }
     }
 
-    private void update_branch() throws Exception {
+    private void update_country() throws Exception {
 //        branch_controller branch;
         try {
-            branch_controller branch = new branch_controller();
-            branch.branch_modify(sucursal);
-            this.listar();
+            country_controller country = new country_controller();
+            country.country_modify(pais);
+            this.list();
             accion = null;
             System.out.println("Accion Mod:"+this.getAccion());
         } catch (Exception e) {
@@ -107,61 +97,63 @@ public class branchbean_ceo implements Serializable {
         }
     }
 
-    public void delete_branch(Sucursal suc) {
+    public void delete_branch(Pais pais) {
 //        branch_controller branch;
         try {
-            branch_controller branch = new branch_controller();
-            branch.branch_delete(suc);
-            this.listar();
+            country_controller country = new country_controller();
+            country.country_delete(pais);
+            this.list();
         } catch (Exception e) {
             System.out.println("Error eliminar: " + e);
         }
     }
 
  
-    public List<Sucursal> listar() throws Exception {
-        branch_controller branch;
+    public List <Pais>list() throws Exception {
+        country_controller country;
         try {
-            branch = new branch_controller();
-            lstSucursal = branch.listar();
+            country = new country_controller();
+            lstPais = country.list();
         } catch (Exception e) {
 //            throw e;
-            System.out.println("Error Listar: " + e);
+            System.out.println("Error: " + e);
         }
-        return lstSucursal;
+        return lstPais;
     }
     
-    public void leerID(Sucursal suc) throws Exception {
+    public void leerID(Pais country) throws Exception {
         accion = "Modificar";
-        branch_controller branch;
-        Sucursal sucursal;
+        country_controller countrycon;
+        Pais pais;
         System.out.println("accion:"+this.getAccion());
         try {
-            branch = new branch_controller();
-            sucursal = branch.leerID(suc);
+            countrycon = new country_controller();
+            pais = countrycon.readID(country);
             System.out.println("presionaste modificar");
-            if (sucursal != null) {
-                this.sucursal = sucursal;
+            if (pais != null) {
+                this.pais = pais;
                 System.out.println("chido, entró sucursal");
             }
-            if (sucursal == null) {
+            if (pais == null) {
                 System.out.println("Vale pito esto");
             }
         } catch (Exception e) {
             throw e;
         }
     }
-  
+     public void reset() {
+        PrimeFaces.current().resetInputs("diaForm:diaPanel");
+    }
 
     public void onRowCancel() {
         FacesMessage msg = new FacesMessage("Cancelado", ".");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-       sucursal = new Sucursal();
-        sucursal = null;
+       pais = new Pais();
+        pais = null;
         accion = null;
         System.out.println("cancelo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        if (sucursal == null && accion == null) {
-            System.out.println("sucursal vacio modificar");
+        if (pais == null && accion == null) {
+            System.out.println("pais vacio modificar");
         } else {
             System.out.println("VALEEEEEE VEEEEEEEEEEEEEEEEEERGAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!");
         }
@@ -171,8 +163,4 @@ public class branchbean_ceo implements Serializable {
     public void registrar(){
         accion = "Registrar";
     }
-    
-
-    
-    
 }

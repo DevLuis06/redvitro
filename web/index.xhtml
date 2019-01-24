@@ -15,7 +15,7 @@
         <script type="text/javascript">
             function hidde_() {
                 var content_clicks = document.getElementsByClassName("ui-button");
-                
+
                 var aseg = content_clicks[0];
                 aseg.setAttribute("onclick", "aseg_clk()");
                 var gral = content_clicks[1];
@@ -24,22 +24,22 @@
                 gara.setAttribute("onclick", "gara_clk()");
                 var cort = content_clicks[3];
                 cort.setAttribute("onclick", "cort_clk()");
- 
+
                 var domobj = document.getElementsByClassName("ui-selectonemenu");
                 var ref = document.getElementById("j_idt6:j_idt17:ref");
-                var aut =  document.getElementById("j_idt6:j_idt17:aut");
-                var arrdomobj =domobj[0];
+                var aut = document.getElementById("j_idt6:j_idt17:aut");
+                var arrdomobj = domobj[0];
                 arrdomobj.classList.add("ui-state-disabled");
                 ref.classList.add("ui-state-disabled");
                 aut.classList.add("ui-state-disabled");
-  
+
             }
         </script>
         <script src="js/view_main.js"/>
     </h:head>   
     <h:body onload="hidde_()">
-        
-      
+
+        <p:growl id="growl" life="2000" />
         <div class="logo_">
             <img class="center_" src="resources/images/logo.png"/>
         </div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>         
             </div>
-            
+
             <p:panel header="Tipo de atención" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <h:form>
@@ -104,7 +104,7 @@
                     </h:form>
                 </div>
             </p:panel>
-            
+
             <p:panel header="Vehiculo" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-3">
@@ -183,7 +183,7 @@
                             <span class="ui-inputgroup-addon"><i class="fa fa-map-marker"></i></span>
                             <p:inputText placeholder="" disabled="true"/>
                         </div>
-                        
+
                     </div>
                     <div class="ui-g-12 ui-md-3">
                         <p:outputLabel value="Transferencia: "/>
@@ -198,7 +198,7 @@
                         <!-- <p:commandButton value="Agregar" id="ajax" update="growl"  styleClass="ui-priority-primary" />-->
                     </div>
                     <div class="divider_"></div>
-                    
+
                     <h:form>
                         <p:dataTable id="cars1" widgetVar="" var="" value="" editable="true" reflow="true" class="table_design">
                             <p:column headerText="Cantidad" style="width: 50px">
@@ -213,7 +213,7 @@
                                     <f:facet name="input"><p:inputText value="#{car.year}" style="width:100%" label="Year"/></f:facet>
                                 </p:cellEditor>
                             </p:column>
- 
+
                             <p:column headerText="Descripción" style="width: 100px">
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{car.year}" /></f:facet>
@@ -262,96 +262,96 @@
                                 <p:rowEditor />
                             </p:column>
                         </p:dataTable>
-                        
- 
-    <!--<div class="ui-g">
-        <div class="ui-g-12">
-            <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
-                          actionListener="#{dtAddRowView.onAddNew()}" oncomplete="PF('cars1').addRow();"/>
-        </div>
-    </div>-->
- 
+
+
+                        <!--<div class="ui-g">
+                            <div class="ui-g-12">
+                                <p:commandButton value="Add new row" styleClass="ui-priority-primary" process="@this" update=":form:msgs"
+                                              actionListener="#{dtAddRowView.onAddNew()}" oncomplete="PF('cars1').addRow();"/>
+                            </div>
+                        </div>-->
+
                     </h:form>    
                 </div>
                 <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-2">
-                    <p:outputLabel value="Uretano: "/>
-                    <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Si" itemValue="si" />
-                        <f:selectItem itemLabel="No" itemValue="no" />
-                    </p:selectOneButton>
+                    <div class="ui-g-12 ui-md-2">
+                        <p:outputLabel value="Uretano: "/>
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Si" itemValue="si" />
+                            <f:selectItem itemLabel="No" itemValue="no" />
+                        </p:selectOneButton>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Presentacion: "/>
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Salchicha" itemValue="salchicha" />
+                            <f:selectItem itemLabel="Tubo" itemValue="tubo" />
+                        </p:selectOneButton>
+                    </div>
+                    <div class="ui-g-12 ui-md-4">
+                        <p:outputLabel value="Cantidad: "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Serv. a Domicilio: "/>
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Si" itemValue="si" />
+                            <f:selectItem itemLabel="No" itemValue="no" />
+                        </p:selectOneButton>
+                    </div>
                 </div>
-                <div class="ui-g-12 ui-md-3">
-                    <p:outputLabel value="Presentacion: "/>
-                    <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Salchicha" itemValue="salchicha" />
-                        <f:selectItem itemLabel="Tubo" itemValue="tubo" />
-                    </p:selectOneButton>
-                </div>
-                <div class="ui-g-12 ui-md-4">
-                    <p:outputLabel value="Cantidad: "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-3">
-                    <p:outputLabel value="Serv. a Domicilio: "/>
-                    <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Si" itemValue="si" />
-                        <f:selectItem itemLabel="No" itemValue="no" />
-                    </p:selectOneButton>
-                </div>
-            </div>
             </p:panel>
             <p:panel header="Datos del siniestro" class="margin_panel">
                 <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-6">
-                <p:outputLabel value="Compañía "/>
-                    <p:inputText placeholder=""/>
-                </div>
-                <div class="ui-g-12 ui-md-3">
-                <p:outputLabel value="Fecha de accidente: "/>
-                <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
-                        <p:calendar id="cal_" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="dd-mm-aaaa"/>
-                    </div>
-                </div>
-                <div class="ui-g-12 ui-md-3">
-                <p:outputLabel value="Hora: "/>
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
-                        <p:calendar id="time" value="#{calendarView.date9}" effect="slide" pattern="HH:mm" timeOnly="true" locale="es" placeholder="hh:mm"/>
-                    </div>
-                </div>
-                <div class="ui-g-12 ui-md-12">
-                <p:outputLabel value="Como ocurrio el siniestro "/>
-                    <p:inputTextarea/>
-                </div>
-            </div>
-                <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-3">
-                    <p:outputLabel value="Telefono: "/>
-                    <div class="ui-inputgroup">
-                        <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
-                        <p:inputText placeholder="Telefono"/>
-                    </div>
-                </div>
-                <div class="ui-g-12 ui-md-3">
-                    <p:outputLabel value="¿Autorizado por la compañia?"/>
-                    <p:selectOneButton value="#{selectOneView.option}">
-                        <f:selectItem itemLabel="Si" itemValue="si" />
-                        <f:selectItem itemLabel="No" itemValue="no" />
-                    </p:selectOneButton>
-                </div>
                     <div class="ui-g-12 ui-md-6">
-                <p:outputLabel value="Motivo de rechazo "/>
-                    <p:inputText/>
+                        <p:outputLabel value="Compañía "/>
+                        <p:inputText placeholder=""/>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Fecha de accidente: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-calendar"></i></span>
+                            <p:calendar id="cal_" value="#{calendarView.date9}" effect="slide" pattern="dd-MM-yyyy" mask="true" locale="es" placeholder="dd-mm-aaaa"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Hora: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-clock-o"></i></span>
+                            <p:calendar id="time" value="#{calendarView.date9}" effect="slide" pattern="HH:mm" timeOnly="true" locale="es" placeholder="hh:mm"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-12">
+                        <p:outputLabel value="Como ocurrio el siniestro "/>
+                        <p:inputTextarea/>
+                    </div>
                 </div>
-             </div>
-            
- 
-            
-                
+                <div class="ui-g ui-fluid">
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="Telefono: "/>
+                        <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-phone"></i></span>
+                            <p:inputText placeholder="Telefono"/>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-md-3">
+                        <p:outputLabel value="¿Autorizado por la compañia?"/>
+                        <p:selectOneButton value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Si" itemValue="si" />
+                            <f:selectItem itemLabel="No" itemValue="no" />
+                        </p:selectOneButton>
+                    </div>
+                    <div class="ui-g-12 ui-md-6">
+                        <p:outputLabel value="Motivo de rechazo "/>
+                        <p:inputText/>
+                    </div>
+                </div>
+
+
+
+
             </p:panel>
-            
+
             <p:panel header="Datos de facturación" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-8">
@@ -408,23 +408,23 @@
             </p:panel>
             <p:panel header="Instalación" class="margin_panel">
                 <div class="ui-g ui-fluid">
-                <div class="ui-g-12 ui-md-6">
-                    <p:outputLabel value="Instalador 1: "/>
+                    <div class="ui-g-12 ui-md-6">
+                        <p:outputLabel value="Instalador 1: "/>
                         <p:selectOneMenu id="instaladaor_1" value="#{principal.marca}">
                             <p:ajax update="Modelo" />
                             <f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{principal.get_category_marca()}" />
                         </p:selectOneMenu>
                     </div>
-                <div class="ui-g-12 ui-md-6">
-                    <p:outputLabel value="Instalador 2: "/>
-                    <p:selectOneMenu id="instaladaor_2" value="#{principal.marca}">
+                    <div class="ui-g-12 ui-md-6">
+                        <p:outputLabel value="Instalador 2: "/>
+                        <p:selectOneMenu id="instaladaor_2" value="#{principal.marca}">
                             <p:ajax update="Modelo" />
                             <f:selectItem itemLabel="" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{principal.get_category_marca()}" />
                         </p:selectOneMenu>
-                    
-                </div>
+
+                    </div>
                     <div class="ui-g-12 ui-md-12">
                         <p:outputLabel value="Indicaciones"/>
                         <p:selectOneButton value="#{selectOneView.option}">
@@ -462,26 +462,26 @@
                             <p:inputText placeholder=""/>
                         </div>
                     </div>
-                    
 
-            </div>
-                
+
+                </div>
+
             </p:panel>
             <p:panel header="Entrega de vehiculo" class="margin_panel">
                 <div class="ui-g ui-fluid">
                     <div class="ui-g-12 ui-md-4">
-                            <p:inputText placeholder=""/>
-                           
+                        <p:inputText placeholder=""/>
+
                     </div>
                     <div class="ui-g-12 ui-md-8">
-                          <p:outputLabel value="Recibí mi vehivulo en perfectas condiciones con los servicios terminados y materiales solicitados"/>
+                        <p:outputLabel value="Recibí mi vehivulo en perfectas condiciones con los servicios terminados y materiales solicitados"/>
                     </div>
                     <div class="ui-g-12 ui-md-6">
-                          <p:outputLabel value="Estoy enterado que no quedo listo mi vehiculo por cuestiones ajenas a vitrocar"/>
+                        <p:outputLabel value="Estoy enterado que no quedo listo mi vehiculo por cuestiones ajenas a vitrocar"/>
                     </div>
                     <div class="ui-g-12 ui-md-6 ">
-                            <p:inputText placeholder=""/>
-                           
+                        <p:inputText placeholder=""/>
+
                     </div>
                     <div class="ui-g-12 ui-md-12">
                         <p:selectOneButton value="#{selectOneView.option}" >
@@ -493,13 +493,17 @@
                         </p:selectOneButton>
                     </div>
                     <div class="ui-g-12 ui-md-2">
-                          <p:outputLabel value="Observaciones:"/>
+                        <p:outputLabel value="Observaciones:"/>
                     </div>
                     <div class="ui-g-12 ui-md-10 ">
-                            <p:inputText placeholder=""/>
+                        <p:inputText placeholder=""/>
                     </div>
                 </div>
+                
             </p:panel>
+            <div class="ui-g ui-fluid">
+                    <p:commandButton value="Guardar" id="withIcon" update="growl" style="position: absolute;right:25px;max-width:100px;margin-right: 10px;" icon="ui-icon-disk" />
+                </div>
         </h:form>
     </h:body>
 </html>

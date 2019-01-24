@@ -5,8 +5,8 @@
  */
 package com.vitrocar.controller;
 
-import com.vitrocar.model.Empleado;
-import com.vitrocar.modelo.Puesto;
+
+import com.vitrocar.modelo.Sucursal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +16,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import org.hibernate.metamodel.relational.Database;
-import static org.primefaces.component.datatable.DataTable.PropertyKeys.summary;
 
 /**
  *
- * @author red-conexion
+ * @author red-conexion by Luis D' León
  */
 @ManagedBean(name = "branch")
 @RequestScoped
@@ -29,37 +27,31 @@ public class branch_controller extends DataBase {
 
     private String nombre;
     private String direccion;
-    private String users;
-    private String passwd;
+   
 
     private String sucursal;
 
-    private String Sucursales;
+   
 
-    private List<String> get_sucursal = new ArrayList<>();
-    Empleado emp = new Empleado();
+    public void branch_insert(Sucursal suc) throws Exception {
 
-    public void branch_insert() throws Exception {
-
-        String nom = this.getNombre();
-        String dir = this.getDireccion();
-        String usr = this.getUsers();
-        String pw = this.getPasswd();
-        System.out.println("nombre: " + nom + "\ndireccion:" + dir + "\nUser: " + usr + "\nPasswd: " + pw);
+        String nom = suc.getNombre();
+        String dir = suc.getDireccion();
+        String abr = suc.getAbreviacion();
+        System.out.println("nombre: " + nom + "\ndireccion:" + dir + "\nAbreviacion: " + abr);
 
         try {
             DataBase db = new DataBase();
             Connection con;
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("insert into empleado (nombre,direccion,users,passwd) values(?,?,?,?); ");
-            ps.setString(1, nom);
-            ps.setString(2, dir);
-            ps.setString(3, usr);
-            ps.setString(4, pw);
+            PreparedStatement ps = con.prepareStatement("insert into sucursal (nombre,direccion,abreviacion) values(?,?,?); ");
+            ps.setString(1, suc.getNombre());
+            ps.setString(2, suc.getDireccion());
+            ps.setString(3, suc.getAbreviacion());
             ps.execute();
             if (ps != null) {
                 System.out.println("Empleado insertado");
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empleado Insertado", "Nombre:"+nom );
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucursal Insertada", "Nombre:" + suc.getNombre());
 
                 FacesContext.getCurrentInstance().addMessage(null, message);
             }
@@ -67,52 +59,61 @@ public class branch_controller extends DataBase {
         } catch (Exception e) {
             throw e;
         } finally {
-
+                
         }
     }
 
-    public List<String> get_sucursal() {
+    public void branch_modify(Sucursal suc) throws Exception {
+
+        String nom = suc.getNombre();
+        String dir = suc.getDireccion();
+        String abre = suc.getAbreviacion();
+
+        System.out.println("nombre: " + nom + "\ndireccion:" + dir + "\nUser: " + abre);
+
         try {
             DataBase db = new DataBase();
-            Connection connection = null;
-            connection = db.connection();
-            PreparedStatement ps = null;
-            ps = connection.prepareStatement("select * from sucursal;");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                get_sucursal.add(rs.getString("nombre"));
+            Connection con;
+            con = db.connection();
+            PreparedStatement ps = con.prepareStatement("update sucursal set nombre = ?, direccion = ?, abreviacion = ? where id_sucursal= ?;");
+            ps.setString(1, nom);
+            ps.setString(2, dir);
+            ps.setString(3, abre);
+            
+            ps.setInt(4, suc.getIdSucursal());
+            ps.execute();
+            if (ps != null) {
+                System.out.println("Empleado insertado");
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucursal Modificado", "Nombre:" + nom);
+                FacesContext.getCurrentInstance().addMessage(null, message);
             }
+
         } catch (Exception e) {
-            System.out.println(e);
+            throw e;
+        } finally {
+            connection().close();
         }
-        return get_sucursal;
     }
-
-    public List<Empleado> listar() throws Exception {
-        Sucursales = sucursal;
-        System.out.println("sucursal:" + Sucursales);
-
-        List<Empleado> lista;
+    
+    public List<Sucursal> listar() throws Exception {
+   
+        List<Sucursal> lista;
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement st = null;
         DataBase db = new DataBase();
         try {
             con = db.connection();
-            st = con.prepareStatement("select e.nombre, e.direccion, e.users, p.nombre from empleado e, puesto p where p.id_puesto = e.id_puesto;");
+            st = con.prepareStatement("select id_sucursal, nombre, direccion,abreviacion from sucursal order by id_sucursal asc;");
             rs = st.executeQuery();
             lista = new ArrayList<>();
-            int i = 1;
             while (rs.next()) {
-//                Empleado emple = rs.getObject(i, Empleado);
-//                lista.add(emp);
-                Empleado puest = new Empleado();
-
-                puest.setNombre(rs.getString("nombre"));
-                puest.setDireccion(rs.getString("direccion"));
-                puest.setUsers(rs.getString("users"));
-//                puest.setPuesto(rs.);
-                lista.add(puest);
+                Sucursal suc = new Sucursal();
+                suc.setIdSucursal(rs.getInt("id_sucursal"));
+                suc.setNombre(rs.getString("nombre"));
+                suc.setDireccion(rs.getString("direccion"));
+                suc.setAbreviacion(rs.getString("abreviacion"));
+                lista.add(suc);
             }
         } catch (Exception e) {
             throw e;
@@ -122,61 +123,57 @@ public class branch_controller extends DataBase {
         return lista;
     }
 
-    public Empleado leerID(Empleado emp) throws Exception {
-        Empleado emple = null;
+    public Sucursal leerID(Sucursal suc) throws Exception {
+        System.out.println("entra");
+        System.out.println("id:" + suc.getIdSucursal());
+        Sucursal sucursal = null;
         ResultSet rs;
         DataBase db = new DataBase();
         Connection con = null;
         try {
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("SELECT nombre, direccion, users FROM empleado where id_empleado=?");
-            ps.setInt(1, emp.getIdEmpleado());
+            PreparedStatement ps = con.prepareStatement("select id_sucursal, nombre, direccion, abreviacion from sucursal where id_sucursal =?");
+            ps.setInt(1, suc.getIdSucursal());
             rs = ps.executeQuery();
             while (rs.next()) {
-                emple = new Empleado();
-                emple.setNombre(rs.getString("nombre"));
-                emple.setDireccion(rs.getString("direccion"));
-                emple.setUsers(rs.getString("users"));
+                sucursal = new Sucursal();
+                sucursal.setIdSucursal(rs.getInt("id_sucursal"));
+                sucursal.setNombre(rs.getString("nombre"));
+                sucursal.setDireccion(rs.getString("direccion"));
+                sucursal.setAbreviacion(rs.getString("abreviacion"));
+                System.out.println("id:" + suc.getIdSucursal());
+                System.out.println("nombre sucursal:" + suc.getNombre());
             }
         } catch (Exception e) {
-            throw  e;
+            throw e;
         }
-
-        return emple;
+        return sucursal;
     }
 
-//    
-//    public List<Empleado> listar() throws Exception{
-//        //System.out.println("sucursal: "+getSucursal());
-//        List<Empleado> lista;
-//        ResultSet rs= null;
-//        try {
-//            this.connection();
-//            PreparedStatement ps = this.connection().prepareCall("select e.nombre, e.direccion, e.users from empleado e, puesto p where p.id_puesto = e.id_puesto ; ");
-//            ps.setString(1, this.getSucursal());
-//            rs = ps.executeQuery();
-//            lista = new ArrayList();
-//            while (rs.next()) {                
-//                    Empleado em = new Empleado();
-//                    em.setNombre(rs.getString("nombre"));
-//                    em.setDireccion(rs.getString("direccion"));
-//                    em.setUsers(rs.getString("users"));
-//                    lista.add(em);
-//            }
-//            
-//        } catch (Exception e) {
-//            throw e;
-//        }
-//        return lista;
-//    }
-    public Empleado getEmp() {
-        return emp;
-    }
+    public void branch_delete(Sucursal suc) throws Exception {
 
-    public void setEmp(Empleado emp) {
-        this.emp = emp;
-    }
+        int id = suc.getIdSucursal();
+        System.out.println("id sucursal:" + id);
 
+        try {
+            DataBase db = new DataBase();
+            Connection con;
+            con = db.connection();
+            PreparedStatement ps = con.prepareStatement("DELETE FROM sucursal WHERE id_sucursal= ?;");
+            ps.setInt(1, id);
+            ps.execute();
+            if (ps != null) {
+                System.out.println("Empleado eliminado");
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucursal Eliminada", "");
+                FacesContext.getCurrentInstance().addMessage(null, message);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            connection().close();
+        }
+    }
+    
     public String getSucursal() {
         return sucursal;
     }
@@ -200,21 +197,4 @@ public class branch_controller extends DataBase {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    public String getUsers() {
-        return users;
-    }
-
-    public void setUsers(String users) {
-        this.users = users;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
-    }
-
 }
