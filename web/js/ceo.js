@@ -29,5 +29,8 @@ function limpiarForm()
 
             document.getElementById("colorId").value("");
             document.getElementById("colorName").value("");
+            
+            document.getElementById("brandId").value("");
+            document.getElementById("brandName").value("");
 
         }

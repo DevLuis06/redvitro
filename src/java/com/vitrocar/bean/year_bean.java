@@ -5,8 +5,9 @@
  */
 package com.vitrocar.bean;
 
-
+import com.vitrocar.controller.year_controller;
 import com.vitrocar.controller.color_controller;
+import com.vitrocar.modelo.Anio;
 import com.vitrocar.modelo.Color;
 import java.io.Serializable;
 import java.util.List;
@@ -19,34 +20,33 @@ import javax.faces.context.FacesContext;
  *
  * @author red-conexion
  */
-
-@ManagedBean(name = "color_bean")
+@ManagedBean(name = "anio_bean")
 @SessionScoped
-
-public class color_bean implements Serializable {
+public class year_bean implements Serializable{
+    
     private String accion = null;
-    private List<Color> lstColor;
-    private Color colores;
+    private List<Anio> lstAnio;
+    private Anio anio;
     
     public String id;
 
-    public List<Color> getLstColor() {
-        return lstColor;
+    public List<Anio> getLstAnio() {
+        return lstAnio;
     }
 
-    public void setLstSucursal(List<Color> lstColor) {
-        this.lstColor = lstColor;
+    public void setLstSAnio(List<Anio> lstAnio) {
+        this.lstAnio = lstAnio;
     }
     
-    public Color getColor() {
-                if (colores == null) {
-            colores = new Color();
+    public Anio getAnio() {
+                if (anio == null) {
+            anio = new Anio();
         }
-        return colores;
+        return anio;
     }
 
-    public void setColor(Color color) {
-        this.colores = colores;
+    public void setAnio(Anio anio) {
+        this.anio = anio;
     }
 
     public String getId() {
@@ -70,29 +70,29 @@ public class color_bean implements Serializable {
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
-                this.insert_color();
+                this.insert_anio();
                 break;
             case "Modificar":
-                this.update_color();
+                this.update_anio();
                 break;
 
         }
     }
 
-    public void insert_color() {
+    public void insert_anio() {
         try {
-            color_controller col = new color_controller();
-            col.color_insert(colores);
+            year_controller  ani = new year_controller();
+            ani.anio_insert(anio);
             
         } catch (Exception e) {
             System.out.println("Error Insertar: " + e);
         }
     }
 
-    private void update_color() throws Exception {
+    private void update_anio() throws Exception {
         try {
-            color_controller col = new color_controller();
-            col.color_modify(colores);
+            year_controller  ani = new year_controller();
+            ani.anio_modify(anio);
             this.listar();
             accion = null;
             System.out.println("Accion Mod:"+this.getAccion());
@@ -102,11 +102,11 @@ public class color_bean implements Serializable {
         }
     }
 
-    public void delete_color(Color color) {
+    public void delete_anio(Anio anio) {
 //        branch_controller branch;
         try {
-            color_controller col = new color_controller();
-            col.color_delete(color);
+            year_controller  ani = new year_controller();
+            ani.anio_delete(anio);
             this.listar();
         } catch (Exception e) {
             System.out.println("Error eliminar color: " + e);
@@ -114,31 +114,31 @@ public class color_bean implements Serializable {
     }
 
  
-    public List<Color> listar() throws Exception {
+    public List<Anio> listar() throws Exception {
         
         try {
-            color_controller col = new color_controller();
-            lstColor = col.listar();
+            year_controller  ani = new year_controller();
+            lstAnio = ani.listar();
         } catch (Exception e) {
 //            throw e;
             System.out.println("Error Listar: " + e);
         }
-        return lstColor;
+        return lstAnio;
     }
     
-    public void leerID(Color color) throws Exception {
+    public void leerID(Anio anio) throws Exception {
         accion = "Modificar";
-        Color colors;
+        Anio anios;
         System.out.println("accion:"+this.getAccion());
         try {
-            color_controller col = new color_controller();
-            colors = col.leerID(color);
+            year_controller  ani = new year_controller();
+            anios = ani.leerID(anio);
             System.out.println("presionaste modificar");
-            if (colors != null) {
-                this.colores = colors;
+            if (anios != null) {
+                this.anio = anios;
                 System.out.println("chido, entró sucursal");
             }
-            if (colors == null) {
+            if (anios == null) {
                 System.out.println("Vale pito esto");
             }
         } catch (Exception e) {
@@ -150,11 +150,11 @@ public class color_bean implements Serializable {
     public void onRowCancel() {
         FacesMessage msg = new FacesMessage("Cancelado", ".");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-       colores = new Color();
-        colores = null;
+       anio = new Anio();
+        anio = null;
         accion = null;
         System.out.println("cancelo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        if (colores == null && accion == null) {
+        if (anio == null && accion == null) {
             System.out.println("sucursal vacio modificar");
         } else {
             System.out.println("VALEEEEEE VEEEEEEEEEEEEEEEEEERGAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!");
@@ -165,5 +165,6 @@ public class color_bean implements Serializable {
     public void registrar(){
         accion = "Registrar";
     }
+    
     
 }

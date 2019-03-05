@@ -5,10 +5,10 @@
  */
 package com.vitrocar.bean;
 
-import com.vitrocar.controller.anio_controller;
-import com.vitrocar.controller.color_controller;
-import com.vitrocar.modelo.Anio;
-import com.vitrocar.modelo.Color;
+import com.vitrocar.controller.brand_controller;
+import com.vitrocar.controller.year_controller;
+import com.vitrocar.modelo.Marca;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,33 +19,33 @@ import javax.faces.context.FacesContext;
  *
  * @author red-conexion
  */
-@ManagedBean(name = "anio_bean")
+@ManagedBean(name = "brand_bean")
 @SessionScoped
-public class anio_bean {
-    
+public class brand_bean implements Serializable {
+
     private String accion = null;
-    private List<Anio> lstAnio;
-    private Anio anio;
-    
+    private List<Marca> lstBrand;
+    private Marca marca;
+
     public String id;
 
-    public List<Anio> getLstAnio() {
-        return lstAnio;
+    public List<Marca> getLstBrand() {
+        return lstBrand;
     }
 
-    public void setLstSAnio(List<Anio> lstAnio) {
-        this.lstAnio = lstAnio;
+    public void setLstBrand(List<Marca> lstBrand) {
+        this.lstBrand = lstBrand;
     }
-    
-    public Anio getAnio() {
-                if (anio == null) {
-            anio = new Anio();
+
+    public Marca getBrand() {
+        if (marca == null) {
+            marca = new Marca();
         }
-        return anio;
+        return marca;
     }
 
-    public void setAnio(Anio anio) {
-        this.anio = anio;
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
     public String getId() {
@@ -55,7 +55,7 @@ public class anio_bean {
     public void setId(String id) {
         this.id = id;
     }
-    
+
     public String getAccion() {
         return accion;
     }
@@ -63,107 +63,100 @@ public class anio_bean {
     public void setAccion(String accion) {
         this.accion = accion;
     }
-    
-    
 
     public void operar() throws Exception {
         switch (accion) {
             case "Registrar":
-                this.insert_anio();
+                this.insert_brand();
                 break;
             case "Modificar":
-                this.update_anio();
+                this.update_brand();
                 break;
 
         }
     }
 
-    public void insert_anio() {
+    public void insert_brand() {
         try {
-            anio_controller  ani = new anio_controller();
-            ani.anio_insert(anio);
-            
+            brand_controller brand = new brand_controller();
+            brand.brand_insert(marca);
+            accion = null;
+
         } catch (Exception e) {
             System.out.println("Error Insertar: " + e);
         }
     }
 
-    private void update_anio() throws Exception {
+    private void update_brand() throws Exception {
         try {
-            anio_controller  ani = new anio_controller();
-            ani.anio_modify(anio);
+            brand_controller brand = new brand_controller();
+            brand.brand_modify(marca);
             this.listar();
             accion = null;
-            System.out.println("Accion Mod:"+this.getAccion());
+            System.out.println("Accion Mod:" + this.getAccion());
         } catch (Exception e) {
             throw e;
             //System.out.println("Error Insertar: " + e);
         }
     }
 
-    public void delete_anio(Anio anio) {
-//        branch_controller branch;
+    public void delete_anio(Marca marca) {
         try {
-            anio_controller  ani = new anio_controller();
-            ani.anio_delete(anio);
+            brand_controller brands = new brand_controller();
+            brands.brand_delete(marca);
             this.listar();
         } catch (Exception e) {
-            System.out.println("Error eliminar color: " + e);
+            System.out.println("Error eliminar marca: " + e);
         }
     }
 
- 
-    public List<Anio> listar() throws Exception {
-        
+    public List<Marca> listar() throws Exception {
+
         try {
-            anio_controller  ani = new anio_controller();
-            lstAnio = ani.listar();
+            brand_controller brand = new brand_controller();
+            lstBrand = brand.listar();
         } catch (Exception e) {
 //            throw e;
             System.out.println("Error Listar: " + e);
         }
-        return lstAnio;
+        return lstBrand;
     }
-    
-    public void leerID(Anio anio) throws Exception {
+
+    public void leerID(Marca marca) throws Exception {
         accion = "Modificar";
-        Anio anios;
-        System.out.println("accion:"+this.getAccion());
+        Marca marcas;
+        System.out.println("accion:" + this.getAccion());
         try {
-            anio_controller  ani = new anio_controller();
-            anios = ani.leerID(anio);
+            brand_controller brand = new brand_controller();
+            marcas = brand.leerID(marca);
             System.out.println("presionaste modificar");
-            if (anios != null) {
-                this.anio = anios;
+            if (marcas != null) {
+                this.marca = marcas;
                 System.out.println("chido, entró sucursal");
             }
-            if (anios == null) {
+            if (marcas == null) {
                 System.out.println("Vale pito esto");
             }
         } catch (Exception e) {
             throw e;
         }
     }
-  
 
     public void onRowCancel() {
         FacesMessage msg = new FacesMessage("Cancelado", ".");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-       anio = new Anio();
-        anio = null;
+        marca = new Marca();
+        marca = null;
         accion = null;
         System.out.println("cancelo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        if (anio == null && accion == null) {
+        if (marca == null && accion == null) {
             System.out.println("sucursal vacio modificar");
         } else {
             System.out.println("VALEEEEEE VEEEEEEEEEEEEEEEEEERGAAAAAAAAAAAAAAAAAAAAAAAAAA!!!!!!!!!!!!!!!!");
         }
     }
-    
-    
-    public void registrar(){
+
+    public void registrar() {
         accion = "Registrar";
     }
-    
-    
 }

@@ -11,7 +11,9 @@
         <ui:composition template="./../ceo/main.xhtml">
 
             <ui:define name="content">
+                <f:event type="preRenderView" listener="#{anio_bean.listar()}" /> <!-- Carga la tabla en año-->
                 <f:event type="preRenderView" listener="#{color_bean.listar()}" /> <!-- Carga la tabla en color-->
+                <f:event type="preRenderView" listener="#{brand_bean.listar()}" /> <!-- Carga la tabla en marca-->
                 <p:growl id="msgs1" showDetail="true"/> 
                 <div class="ui-g-12 ui-md-9 ui-g-nopad main">
                     <div class="mainContent clearfix">
@@ -36,29 +38,122 @@
                                             <f:selectItem itemLabel="PS4" itemValue="PS4" />
                                             <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
                                         </p:selectOneMenu>
-                                    </h:form>
-                                </h:panelGrid>
-                            </p:tab>
-                            
-                            <!-- ***************************************** M A R C A S ****************************************************************************-->
-                            
-                            <p:tab title="Marcas">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:form>
-                                        <p:outputLabel for="marca" value="Marca:" />
-                                        <p:selectOneMenu id="marca" value="#{selectOneMenuView.console}" style="width:125px">
-                                            <f:selectItem itemLabel="Select One" itemValue="" />
-                                            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-                                            <f:selectItem itemLabel="PS4" itemValue="PS4" />
-                                            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-                                        </p:selectOneMenu>
-                                    </h:form>
-                                </h:panelGrid>
-                            </p:tab>
-                            <p:tab title="Año">
-                                <h:panelGrid columns="2" cellpadding="10">
+                                        
+                                        <p:dataTable id="databrand" styleClass="dtbrand" var="marca" value="#{brand_bean.lstBrand}" >
+                                        <p:column headerText="Id" style="width:20%" >
+                                            <p:outputLabel value="#{marca.id_marca}"/>
+                                        </p:column>
+                                        <p:column headerText="Nombre" style="width:40%" >
+                                            <p:outputLabel value="#{marca.nombre}"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+                                            <p:commandButton icon="ui-icon-pencil" update="dialogBrand" actionListener="#{brand_bean.leerID(marca)}"  oncomplete="PF('widgBrand').show();"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
 
+                                            <p:commandButton icon="ui-icon-close" action="#{brand_bean.delete_anio(marca)}"  update="databrand :msgs1"  >
+                                                <p:confirm header="Confirmación" message="¿Desea eliminar la marca?" icon="ui-icon-alert"  />
+                                            </p:commandButton>
+
+                                        </p:column>
+
+
+                                    </p:dataTable>
+                                    <!--    Confirmation Delete Year                  -->  
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+                                            <p:ajax />
+                                        </p:commandButton>
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+                                    </p:confirmDialog>  
+
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:commandButton value="Nuevo" oncomplete="PF('widgBrand').show();" onclick="#{brand_bean.registrar()}"/>
+                                        </div>
+                                    </div>
+                                    </h:form>
                                 </h:panelGrid>
+                            </p:tab>
+
+                            <!-- ***************************************** M A R C A S ****************************************************************************-->
+
+                            <p:tab title="Marcas">
+                                <h:form id="form3">
+                                    <p:dataTable id="databrand" styleClass="dtbrand" var="marca" value="#{brand_bean.lstBrand}" >
+                                        <p:column headerText="Id" style="width:20%" >
+                                            <p:outputLabel value="#{marca.id_marca}"/>
+                                        </p:column>
+                                        <p:column headerText="Nombre" style="width:40%" >
+                                            <p:outputLabel value="#{marca.nombre}"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+                                            <p:commandButton icon="ui-icon-pencil" update="dialogBrand" actionListener="#{brand_bean.leerID(marca)}"  oncomplete="PF('widgBrand').show();"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+
+                                            <p:commandButton icon="ui-icon-close" action="#{brand_bean.delete_anio(marca)}"  update="databrand :msgs1"  >
+                                                <p:confirm header="Confirmación" message="¿Desea eliminar la marca?" icon="ui-icon-alert" />
+                                            </p:commandButton>
+
+                                        </p:column>
+
+
+                                    </p:dataTable>
+                                    <!--    Confirmation Delete Year                  -->  
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+                                            <p:ajax />
+                                        </p:commandButton>
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+                                    </p:confirmDialog>  
+
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:commandButton value="Nuevo" oncomplete="PF('widgBrand').show();" onclick="#{brand_bean.registrar()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
+                            </p:tab>
+
+                            <!-- *****************************************  A  Ñ  O  ****************************************************************************-->
+
+                            <p:tab title="Año">
+                                <h:form id="form2">
+                                    <p:dataTable id="dataanio" styleClass="dtanio" var="anio" value="#{anio_bean.lstAnio}" >
+                                        <p:column headerText="Id" style="width:20%" >
+                                            <p:outputLabel value="#{anio.id_anio}"/>
+                                        </p:column>
+                                        <p:column headerText="Nombre" style="width:40%" >
+                                            <p:outputLabel value="#{anio.anio}"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+                                            <p:commandButton icon="ui-icon-pencil" update="dialogAnio" actionListener="#{anio_bean.leerID(anio)}"  oncomplete="PF('widgAnio').show();"/>
+                                        </p:column>
+                                        <p:column style="width:5%">
+
+                                            <p:commandButton icon="ui-icon-close" action="#{anio_bean.delete_anio(anio)}"  update="dataanio :msgs1"  >
+                                                <p:confirm header="Confirmación" message="¿Desea eliminar el año?" icon="ui-icon-alert"  />
+                                            </p:commandButton>
+
+                                        </p:column>
+
+
+                                    </p:dataTable>
+                                    <!--    Confirmation Delete Year                  -->  
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" >
+                                            <p:ajax />
+                                        </p:commandButton>
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-closethick" />
+                                    </p:confirmDialog>  
+
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:commandButton value="Nuevo" oncomplete="PF('widgAnio').show();" onclick="#{anio_bean.registrar()}"/>
+                                        </div>
+                                    </div>
+                                </h:form>
                             </p:tab>
 
                             <!-- ***************************************** C O L O R ****************************************************************************-->
@@ -103,6 +198,90 @@
                         </p:tabView>
                     </div>
                 </div>
+                
+                
+                 <!-- ***************************************** D I A L O G   V E H I C U L O ****************************************************************************-->
+                <p:dialog id="dialogVehicle" showEffect="explode" modal="true" dynamic="true"  header="Datos" widgetVar="widgBrand">
+                    <h:form id="vehicleForm">
+                        <p:panel id="brandPanel">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Id:" />
+                                    <p:inputText id="marcaId" disabled="true" placeholder="Id " value="#{brand_bean.brand.id_marca}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Nombre:" />
+                                    <p:inputText id="marcaName" placeholder="Marca" value="#{brand_bean.brand.nombre}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonMod" value="#{brand_bean.accion}" onclick="limpiarForm()" update="@(.dtbrand) :msgs1" actionListener="#{brand_bean.operar()}" oncomplete="PF('widgBrand').hide()"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonCan" value="Cancelar" onclick="limpiarForm()" actionListener="#{brand_bean.onRowCancel()}" update=":msgs1" immediate="true" oncomplete="PF('widgBrand').hide();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
+
+                
+                
+                
+                
+                <!-- ***************************************** D I A L O G   M A R C A ****************************************************************************-->
+                <p:dialog id="dialogBrand" showEffect="explode" modal="true" dynamic="true"  header="Datos" widgetVar="widgBrand">
+                    <h:form id="brandForm">
+                        <p:panel id="brandPanel">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Id:" />
+                                    <p:inputText id="marcaId" disabled="true" placeholder="Id " value="#{brand_bean.brand.id_marca}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Nombre:" />
+                                    <p:inputText id="marcaName" placeholder="Marca" value="#{brand_bean.brand.nombre}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonMod" value="#{brand_bean.accion}" onclick="limpiarForm()" update="@(.dtbrand) :msgs1" actionListener="#{brand_bean.operar()}" oncomplete="PF('widgBrand').hide()"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonCan" value="Cancelar" onclick="limpiarForm()" actionListener="#{brand_bean.onRowCancel()}" update=":msgs1" immediate="true" oncomplete="PF('widgBrand').hide();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
+
+
+                <!-- ***************************************** D I A L O G   A  Ñ  O****************************************************************************-->
+                <p:dialog id="dialogAnio" showEffect="explode" modal="true" dynamic="true"  header="Datos" widgetVar="widgAnio">
+                    <h:form id="anioForm">
+                        <p:panel id="colorPanel">
+                            <div class="ui-g ui-fluid">
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Id:" />
+                                    <p:inputText id="colorId" disabled="true" placeholder="Id " value="#{anio_bean.anio.id_anio}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3">
+                                    <p:outputLabel value="Nombre:" />
+                                    <p:inputText id="colorName" placeholder="Año" value="#{anio_bean.anio.anio}"/>
+                                </div>
+                                <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton id="buttonMod" value="#{anio_bean.accion}" onclick="limpiarForm()" update="@(.dtanio) :msgs1" actionListener="#{anio_bean.operar()}" oncomplete="PF('widgAnio').hide()"/>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6 ui-lg-3" >
+                                        <p:commandButton   id="buttonCan"    value="Cancelar" onclick="limpiarForm()" actionListener="#{anio_bean.onRowCancel()}" update=":msgs1" immediate="true" oncomplete="PF('widgAnio').hide();"/> 
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </h:form>
+                </p:dialog>
 
                 <!-- ***************************************** D I A L O G   C O L O R ****************************************************************************-->
                 <p:dialog id="dialogColor" showEffect="explode" modal="true" dynamic="true"  header="Datos" widgetVar="widgColor">
@@ -117,10 +296,6 @@
                                     <p:outputLabel value="Nombre:" />
                                     <p:inputText id="colorName" placeholder="Nombre" value="#{color_bean.color.nombre}"/>
                                 </div>
-                                
-
-
-
                                 <div class="ui-g-12 ui-md-6 ui-lg-3" id="divbutton" >
                                     <div class="ui-g-12 ui-md-6 ui-lg-3" >
                                         <p:commandButton id="buttonMod" value="#{color_bean.accion}" onclick="limpiarForm()" update="@(.dtcolor) :msgs1" actionListener="#{color_bean.operar()}" oncomplete="PF('widgColor').hide()"/>

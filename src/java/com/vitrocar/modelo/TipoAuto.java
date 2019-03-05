@@ -5,32 +5,21 @@
  */
 package com.vitrocar.modelo;
 
-import java.io.Serializable;
-
 /**
  *
- * @author red-conexion
+ * @author red-conexion by psycho06
  */
-public class Puesto implements Serializable{
+public class TipoAuto {
 
-    private int idPuesto;
-    private String nombre;
+    private int idTipoAuto;
     private String descripcion;
 
-    public int getIdPuesto() {
-        return idPuesto;
+    public int getIdTipoAuto() {
+        return idTipoAuto;
     }
 
-    public void setIdPuesto(int idPuesto) {
-        this.idPuesto = idPuesto;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdTipoAuto(int idTipoAuto) {
+        this.idTipoAuto = idTipoAuto;
     }
 
     public String getDescripcion() {
@@ -40,5 +29,7 @@ public class Puesto implements Serializable{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+    
+    
+    
 }

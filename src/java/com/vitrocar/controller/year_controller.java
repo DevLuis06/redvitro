@@ -5,7 +5,7 @@
  */
 package com.vitrocar.controller;
 
-import com.vitrocar.modelo.Aseguradora;
+import com.vitrocar.modelo.Anio;
 import com.vitrocar.modelo.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,24 +19,23 @@ import javax.faces.context.FacesContext;
  *
  * @author red-conexion
  */
-public class insurance_controller extends DataBase{
-    
-    
-    public void insurance_insert(Aseguradora asegu) throws Exception {
+public class year_controller extends DataBase{
+     
+    public void anio_insert(Anio ani) throws Exception {
 
-        String nom = asegu.getNombre();
+        int nom = ani.getAnio();
         System.out.println("nombre: " + nom);
 
         try {
             DataBase db = new DataBase();
             Connection con;
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("insert into aseguradora (nombre) values(?); ");
-            ps.setString(1, asegu.getNombre());
+            PreparedStatement ps = con.prepareStatement("insert into anio (anio) values(?); ");
+            ps.setInt(1, ani.getAnio());
             ps.execute();
             if (ps != null) {
-                System.out.println("Color insertado");
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color Insertado", "Nombre:" + asegu.getNombre());
+                System.out.println("Año insertado");
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Año Insertado", "Año:" + ani.getAnio());
 
                 FacesContext.getCurrentInstance().addMessage(null, message);
             }
@@ -48,23 +47,23 @@ public class insurance_controller extends DataBase{
         }
     }
 
-    public void insurance_modify(Aseguradora asegu) throws Exception {
+    public void anio_modify(Anio ani) throws Exception {
 
-        String nom = asegu.getNombre();
+        int nom = ani.getAnio();
 
-        System.out.println("nombre: " + nom);
+        System.out.println("año modificar: " + nom);
 
         try {
             DataBase db = new DataBase();
             Connection con;
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("update aseguradora set nombre = ? where id_aseguradora= ?;");
-            ps.setString(1, nom);
-            ps.setInt(2, asegu.getId_aseguradora());
+            PreparedStatement ps = con.prepareStatement("update anio set anio= ? where id_anio= ?;");
+            ps.setInt(1, nom);
+            ps.setInt(2, ani.getId_anio());
             ps.execute();
             if (ps != null) {
-                System.out.println("Color modificado");
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color Modificado", "Nombre:" + nom);
+                System.out.println("Año modificado");
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Año Modificado", "Año:" + nom);
                 FacesContext.getCurrentInstance().addMessage(null, message);
             }
 
@@ -80,23 +79,23 @@ public class insurance_controller extends DataBase{
     /*
     Función para llenar la tabla 
     */  
-    public List<Color> listar() throws Exception {
+    public List<Anio> listar() throws Exception {
    
-        List<Color> lista;
+        List<Anio> lista;
         Connection con = null;
         ResultSet rs = null;
         PreparedStatement st = null;
         DataBase db = new DataBase();
         try {
             con = db.connection();
-            st = con.prepareStatement("select id_color, nombre from color order by id_color asc;");
+            st = con.prepareStatement("select id_anio, anio from anio order by id_anio asc;");
             rs = st.executeQuery();
             lista = new ArrayList<>();
             while (rs.next()) {
-                Color col = new Color();
-                col.setId_color(rs.getInt("id_color"));
-                col.setNombre(rs.getString("nombre"));
-                lista.add(col);
+                Anio ani = new Anio();
+                ani.setId_anio(rs.getInt("id_anio"));
+                ani.setAnio(rs.getInt("anio"));
+                lista.add(ani);
             }
         } catch (Exception e) {
             throw e;
@@ -106,46 +105,46 @@ public class insurance_controller extends DataBase{
         return lista;
     }
 
-    public Color leerID(Color col) throws Exception {
+    public Anio leerID(Anio ani) throws Exception {
         System.out.println("entra");
-        System.out.println("id:" + col.getId_color());
-        Color color = null;
+        System.out.println("id:" + ani.getId_anio());
+        Anio anios = null;
         ResultSet rs;
         DataBase db = new DataBase();
         Connection con = null;
         try {
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("select id_color, nombre from color where id_color =?");
-            ps.setInt(1, col.getId_color());
+            PreparedStatement ps = con.prepareStatement("select id_anio, anio from anio where id_anio=?");
+            ps.setInt(1, ani.getId_anio() );
             rs = ps.executeQuery();
             while (rs.next()) {
-                color = new Color();
-                color.setId_color(rs.getInt("id_color"));
-                color.setNombre(rs.getString("nombre"));
-                System.out.println("id:" + col.getId_color());
-                System.out.println("nombre color:" + col.getNombre());
+                anios = new Anio();
+                anios.setId_anio(rs.getInt("id_anio"));
+                anios.setAnio(rs.getInt("anio"));
+                System.out.println("id:" + ani.getId_anio());
+                System.out.println("año:" + ani.getAnio());
             }
         } catch (Exception e) {
             throw e;
         }
-        return color;
+        return anios;
     }
 
-    public void color_delete(Color col) throws Exception {
+    public void anio_delete(Anio ani) throws Exception {
 
-        int id = col.getId_color();
+        int id = ani.getId_anio();
         System.out.println("id sucursal:" + id);
 
         try {
             DataBase db = new DataBase();
             Connection con;
             con = db.connection();
-            PreparedStatement ps = con.prepareStatement("DELETE FROM color WHERE id_color= ?;");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM anio WHERE id_anio= ?;");
             ps.setInt(1, id);
             ps.execute();
             if (ps != null) {
-                System.out.println("color eliminado");
-                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Color Eliminado", "");
+                System.out.println("año eliminado");
+                FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Año Eliminado", "");
                 FacesContext.getCurrentInstance().addMessage(null, message);
             }
         } catch (Exception e) {

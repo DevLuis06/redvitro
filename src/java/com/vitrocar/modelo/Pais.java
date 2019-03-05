@@ -5,11 +5,13 @@
  */
 package com.vitrocar.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author red-conexion
  */
-public class Pais {
+public class Pais implements Serializable{
     
     private int idPais;
      private String nombre;

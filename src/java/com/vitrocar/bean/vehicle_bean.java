@@ -12,22 +12,18 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
-import org.primefaces.PrimeFaces;
 
 /**
  *
  * @author red-conexion
  */
-@ManagedBean(name = "employeebean")
-@SessionScoped
 
-public class employee_bean implements Serializable {
-
+@ManagedBean(name = "vehicle_bean")
+@ViewScoped
+public class vehicle_bean implements Serializable  {
     private List<Empleado> lstEmpleado;
     private Empleado empleado;
     private String accion = null;
@@ -233,16 +229,4 @@ public class employee_bean implements Serializable {
         this.empleado.setNombre(null);
         System.out.println("limpiar");
     }
-
-//   public void onRowEdit(RowEditEvent event) {
-//       
-//       
-//       
-//        FacesMessage msg = new FacesMessage("Car Edited", ((Car) event.getObject()).getId());
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-//    }
-//    public void show_dlg_method(){
-//    RequestContext.getCurrentInstance().update(":dlgdatos");
-//    RequestContext.getCurrentInstance().execute("PF('widgDatos').show();");
-//}
 }

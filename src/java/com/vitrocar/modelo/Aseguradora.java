@@ -11,18 +11,16 @@ import java.io.Serializable;
  *
  * @author red-conexion
  */
-public class Puesto implements Serializable{
-
-    private int idPuesto;
+public class Aseguradora implements Serializable{
+    private int id_aseguradora;
     private String nombre;
-    private String descripcion;
 
-    public int getIdPuesto() {
-        return idPuesto;
+    public int getId_aseguradora() {
+        return id_aseguradora;
     }
 
-    public void setIdPuesto(int idPuesto) {
-        this.idPuesto = idPuesto;
+    public void setId_aseguradora(int id_aseguradora) {
+        this.id_aseguradora = id_aseguradora;
     }
 
     public String getNombre() {
@@ -32,13 +30,6 @@ public class Puesto implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
+    
+    
 }

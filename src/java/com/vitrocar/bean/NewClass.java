@@ -7,8 +7,8 @@ package com.vitrocar.bean;
 
 /**
  *
- * @author red-conexion
+ * @author red-conexion by psycho06
  */
-public class VehiculoBean {
+public class NewClass {
     
 }

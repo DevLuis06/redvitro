@@ -5,11 +5,13 @@
  */
 package com.vitrocar.modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author red-conexion
  */
-public class Sucursal {
+public class Sucursal implements Serializable{
 
     private int idSucursal;
     private String nombre;
